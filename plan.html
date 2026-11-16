@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Plan my trip — Trails Unseen</title>
+<meta name="description" content="Tell us about your dog and we'll plan your trip.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,400,0..1,0&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="badge" viewBox="0 0 120 120">
+      <clipPath id="bc"><circle cx="60" cy="60" r="60"/></clipPath>
+      <g clip-path="url(#bc)">
+        <rect width="120" height="120" fill="#fef3c7"/>
+        <g stroke="#d97706" stroke-width="4.5" stroke-linecap="round"><line x1="56.1" y1="52.5" x2="49.2" y2="48.5"/><line x1="64.5" y1="44.1" x2="60.5" y2="37.2"/><line x1="76" y1="41" x2="76" y2="33"/><line x1="87.5" y1="44.1" x2="91.5" y2="37.2"/><line x1="95.9" y1="52.5" x2="102.8" y2="48.5"/></g>
+        <circle cx="76" cy="64" r="17" fill="#f59e0b"/>
+        <path d="M0 74 C 28 58, 52 60, 78 70 C 94 76, 108 72, 120 64 V120 H0 Z" fill="#22c55e"/>
+        <path d="M0 90 C 36 72, 74 72, 120 88 V120 H0 Z" fill="#15803d"/>
+        <path d="M40 120 C 50 108, 80 106, 68 96 C 62 91, 66 86, 72 82" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round"/>
+      </g>
+    </symbol>
+    <symbol id="paw" viewBox="-6 -7 12 12"><ellipse cx="0" cy="2" rx="4.2" ry="3.4"/><circle cx="-4.2" cy="-3" r="1.6"/><circle cx="-1.4" cy="-4.8" r="1.6"/><circle cx="1.6" cy="-4.8" r="1.6"/><circle cx="4.4" cy="-3" r="1.6"/></symbol>
+  </defs>
+</svg>
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="index.html" aria-label="Trails Unseen, home"><svg><use href="#badge"/></svg><span>Trails<b>Unseen</b></span></a>
+    <nav class="links" aria-label="Main"><a href="trips.html">Trips</a><a href="safety.html">Your dog's safety</a><a href="story.html">Our story</a><a href="journal.html">Journal</a><a href="faq.html">FAQ</a></nav>
+    <div style="display:flex;gap:10px;align-items:center">
+      <a class="btn btn-primary hide-sm" href="plan.html">Plan my trip</a>
+      <details class="menu"><summary aria-label="Menu"><span class="ic">menu</span></summary><nav aria-label="Mobile"><a href="index.html">Home</a><a href="trips.html">Trips</a><a href="safety.html">Your dog's safety</a><a href="story.html">Our story</a><a href="journal.html">Journal</a><a href="faq.html">FAQ</a><a href="plan.html">Plan my trip</a></nav></details>
+    </div>
+  </div>
+</header>
+<main>
+<section class="page-hero"><div class="wrap"><div class="crumbs"><a href="index.html">Home</a> / Plan my trip</div><p class="eyebrow">Plan my trip</p><h1>Tell us about your dog.</h1><p class="lede">Fill this in and we'll get back to you within a day with dates, a plan and a clear price. No payment needed yet.</p></div></section>
+<section class="enquire" style="padding-top:48px"><div class="wrap form-grid">
+  <div>
+    <h2 style="font-size:26px">What happens next</h2>
+    <ul class="contact-list">
+      <li><span class="ic">looks_one</span>We read every message ourselves.</li>
+      <li><span class="ic">looks_two</span>We call or message you to talk through your dog and your dates.</li>
+      <li><span class="ic">looks_3</span>You get a plan and an all-in price. Happy? We send a payment link to confirm.</li>
+    </ul>
+    <ul class="contact-list" style="margin-top:32px">
+      <li><span class="ic">chat</span>WhatsApp: <strong data-wa>[your WhatsApp number]</strong></li>
+      <li><span class="ic">mail</span>Email: <strong>hello@trailsunseen.com</strong></li>
+      <li><span class="ic">location_on</span>Bengaluru · Hyderabad</li>
+    </ul>
+  </div>
+  <form class="card" id="enquiry" novalidate>
+  <div class="fields">
+    <div class="field"><label for="f-name">Your name</label><input class="input" id="f-name" autocomplete="name" placeholder="e.g. Priya" required></div>
+    <div class="field"><label for="f-phone">Phone (optional)</label><input class="input" id="f-phone" type="tel" autocomplete="tel" placeholder="So we can call back"></div>
+    <div class="field"><label for="f-city">Starting from</label><select class="input" id="f-city"><option>Bengaluru</option><option>Hyderabad</option><option>Somewhere else</option></select></div>
+    <div class="field"><label for="f-trip">Which trip?</label><select class="input" id="f-trip"><option>Coorg, 3 nights</option><option>Not sure yet, suggest one</option><option>Tell me about upcoming trips</option></select></div>
+    <div class="field"><label for="f-dog">Your dog's name</label><input class="input" id="f-dog" placeholder="e.g. Whiskey"></div>
+    <div class="field"><label for="f-breed">Breed and size</label><input class="input" id="f-breed" placeholder="e.g. Indie, medium"></div>
+    <div class="field"><label for="f-when">When would you like to go?</label><input class="input" id="f-when" placeholder="e.g. a long weekend in January"></div>
+    <div class="field"><label for="f-who">Who's coming?</label><input class="input" id="f-who" placeholder="e.g. 2 adults, 1 child, 1 dog"></div>
+    <div class="field full"><label for="f-note">Anything we should know?</label><textarea class="input" id="f-note" placeholder="Swimmer? Nervous in cars? Loves everyone?"></textarea></div>
+  </div>
+  <button class="btn btn-primary" type="submit" style="width:100%;margin-top:20px"><span class="ic">send</span>Send my enquiry</button>
+  <div class="result" id="result" role="status" aria-live="polite"></div>
+</form>
+</div></section>
+</main>
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <a class="logo" href="index.html"><svg><use href="#badge"/></svg><span>Trails<b>Unseen</b></span></a>
+        <p style="margin:12px 0 0;max-width:380px">Discovery is the product. Travel is the medium. Fully handled trips to the India most people never see.</p>
+        <p style="margin:12px 0 0">WhatsApp: <strong data-wa>[your WhatsApp number]</strong><br>Email: <strong>hello@trailsunseen.com</strong></p>
+      </div>
+      <nav class="foot-links" aria-label="Footer" style="flex-direction:column;gap:10px">
+        <a href="trips.html">Trips</a><a href="coorg.html">Coorg, 3 nights</a><a href="safety.html">Your dog's safety</a><a href="story.html">Our story</a><a href="journal.html">Journal</a>
+      </nav>
+      <nav class="foot-links" aria-label="Help" style="flex-direction:column;gap:10px">
+        <a href="faq.html">FAQ</a><a href="plan.html">Plan my trip</a><a href="cancellation.html">Cancellation policy</a><a href="terms.html">Terms</a><a href="privacy.html">Privacy</a>
+      </nav>
+      <nav class="foot-links" aria-label="Social" style="flex-direction:column;gap:10px">
+        <a href="https://www.instagram.com/tailsunseen/">Instagram</a><a href="https://www.youtube.com/@tailsunseen">YouTube</a>
+      </nav>
+    </div>
+    <div class="small"><span>© 2026 Trails Unseen · Bengaluru · Hyderabad</span><span>Made with a golden retriever supervising.</span></div>
+  </div>
+</footer>
+<script src="site.js"></script>
+</body>
+</html>
