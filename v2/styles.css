@@ -1,0 +1,304 @@
+/* Trails Unseen — home page v2
+   Tokens first. Mobile first: every rule works at 375px, then widens. */
+
+:root {
+  /* colour: warm paper, forest ink, one accent (brand green). Amber appears only in the sun. */
+  --paper: #fffdf7;
+  --ink: #0f2f24;
+  --body: #3b4a42;
+  --muted: #5a6a61;
+  --line: #e3dfd0;
+  --action: #15803d;
+  --action-dark: #166534;
+  --forest: #0f2f24;
+  --on-forest: #f4f1e4;
+  --on-forest-muted: #b8c9bd;
+  --leaf: #86efac;
+  --todo: #b45309;
+  --meadow: #eef4e4;
+  --meadow-deep: #dcebd2;
+  --paw: #c3d1b8;
+
+  /* type */
+  --display: "Outfit", system-ui, sans-serif;
+  --sans: "Plus Jakarta Sans", system-ui, sans-serif;
+
+  /* spacing scale: 4 8 12 16 24 32 48 72 112 */
+  --s1: 4px; --s2: 8px; --s3: 12px; --s4: 16px; --s5: 24px;
+  --s6: 32px; --s7: 48px; --s8: 72px; --s9: 112px;
+
+  --radius: 14px;
+  --radius-panel: 28px;
+  --gutter: 20px;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+body {
+  margin: 0;
+  font-family: var(--sans);
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--body);
+  background: var(--paper);
+  -webkit-font-smoothing: antialiased;
+}
+
+img, svg { display: block; max-width: 100%; }
+p, dd { text-wrap: pretty; }
+h1, h2, h3 { font-family: var(--display); color: var(--ink); letter-spacing: -0.02em; margin: 0; text-wrap: balance; }
+p { margin: 0; }
+ol, ul { margin: 0; padding: 0; list-style: none; }
+
+h2 { font-size: clamp(28px, 6.4vw, 44px); line-height: 1.1; font-weight: 700; max-width: 18em; }
+.lede { font-size: clamp(18px, 2.2vw, 21px); line-height: 1.55; max-width: 34em; margin-top: var(--s4); }
+
+.wrap { max-width: 1120px; margin: 0 auto; padding: 0 var(--gutter); }
+section { padding: var(--s8) 0; }
+
+a { color: var(--action); }
+a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible {
+  outline: 3px solid var(--action);
+  outline-offset: 3px;
+}
+
+/* ---------- buttons and links ---------- */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-height: 52px; padding: 0 var(--s5);
+  font: 700 16px/1 var(--sans);
+  border-radius: 999px; border: 2px solid transparent;
+  text-decoration: none; cursor: pointer;
+  transition: background-color .15s, border-color .15s, color .15s;
+}
+.btn-primary { background: var(--action); color: #fff; }
+.btn-primary:hover { background: var(--action-dark); }
+.btn-quiet { color: var(--ink); border-color: var(--ink); background: transparent; }
+.btn-quiet:hover { background: var(--ink); color: var(--paper); }
+.btn-light { background: var(--paper); color: var(--ink); }
+.btn-light:hover { background: var(--leaf); }
+.btn-small { min-height: 44px; padding: 0 var(--s4); font-size: 14px; color: var(--ink); border-color: var(--ink); }
+.btn-small:hover { background: var(--ink); color: var(--paper); }
+
+.link { font-weight: 700; text-underline-offset: 4px; display: inline-flex; align-items: center; min-height: 44px; }
+.link-light { color: var(--leaf); }
+.cta-row { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s3) var(--s5); margin-top: var(--s6); }
+
+/* ---------- header ---------- */
+.top-row { display: flex; align-items: center; justify-content: space-between; min-height: 72px; }
+.logo { display: inline-flex; align-items: center; gap: var(--s3); min-height: 44px; font: 700 22px/1 var(--display); letter-spacing: -0.02em; color: var(--ink); text-decoration: none; }
+.logo svg { width: 40px; height: 40px; }
+.logo b { color: var(--action); font-weight: 700; }
+.top-cta { display: none; }
+@media (min-width: 620px) { .top-cta { display: inline-flex; } }
+
+/* ---------- 1. hero ---------- */
+.hero { padding: var(--s6) 0 0; }
+.hero h1 { font-size: clamp(42px, 11.5vw, 84px); line-height: 1; font-weight: 800; letter-spacing: -0.03em; max-width: 10em; }
+.hero-sub { font-size: clamp(18px, 2.3vw, 22px); line-height: 1.5; max-width: 30em; margin-top: var(--s5); color: var(--body); }
+/* The photo's pale sky fades up into the page, so the headline sits in the sky. */
+.hero-text { position: relative; z-index: 1; }
+.hero-photo { margin: calc(var(--s6) * -1) 0 0; }
+.hero-photo img {
+  width: 100%; height: clamp(320px, 62vw, 760px);
+  object-fit: cover; object-position: 68% 100%;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 34%);
+          mask-image: linear-gradient(to bottom, transparent 0, #000 34%);
+}
+
+/* ---------- the paw trail: the thread that walks the reader down the page ---------- */
+.sprite { position: absolute; }
+.trail { height: 132px; }
+.trail svg { display: block; width: 100%; height: 100%; overflow: visible; }
+.paw { fill: var(--paw); }
+
+/* The prints appear one after another as a trail is reached. site.js adds .reveal-on, so without it they simply show. */
+.reveal-on .paws .paw { opacity: 0; transition: opacity .3s ease; }
+.reveal-on .is-in .paws .paw { opacity: 1; }
+@media (prefers-reduced-motion: reduce) {
+  .reveal-on .paws .paw { opacity: 1; transition: none; }
+}
+
+/* side trail, wide screens only */
+.rail { display: none; }
+@media (min-width: 1400px) {
+  .rail { position: fixed; left: var(--s5); top: 50%; z-index: 5; display: flex; flex-direction: column; transform: translateY(-50%); opacity: 0; pointer-events: none; transition: opacity .3s ease; }
+  .rail.is-on { opacity: 1; pointer-events: auto; }
+  .rail a { display: flex; align-items: center; gap: var(--s2); min-height: 44px; font: 600 13px/1 var(--sans); color: var(--ink); text-decoration: none; }
+  .rail svg { width: 20px; height: 22px; fill: var(--paw); transition: fill .2s ease, transform .2s ease; transform: scale(.6); }
+  .rail span { opacity: 0; transition: opacity .2s ease; }
+  .rail a:hover span, .rail a:focus-visible span, .rail a.is-here span { opacity: 1; }
+  .rail a.is-here svg { fill: var(--action); transform: scale(1); }
+}
+
+/* every section after the hero follows a trail or a band, so it adds no top gap of its own */
+.days, .handled, .how, .trips, .whiskey, .enquire { padding-top: 0; }
+/* a section that hands over to a trail or a band lets that be the gap */
+.days { padding-bottom: 0; }
+.how, .trips, .whiskey { padding-bottom: var(--s5); }
+
+/* ---------- 2. the trip is for your dog ---------- */
+.moments { margin-top: var(--s7); display: grid; gap: var(--s7); }
+.moments img { width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: cover; border-radius: var(--radius-panel); }
+.moment-text { margin-top: var(--s4); }
+.moments h3 { font-size: clamp(24px, 5.6vw, 32px); line-height: 1.04; font-weight: 800; letter-spacing: -0.03em; }
+.moments p { margin-top: var(--s3); font-size: clamp(17px, 2vw, 20px); max-width: 24em; }
+
+/* ---------- 3. you plan nothing ---------- */
+.handled { position: relative; background: var(--meadow); margin-top: clamp(28px, 5.5vw, 80px); padding-top: var(--s7); padding-bottom: calc(var(--s7) + clamp(28px, 5.5vw, 80px)); }
+.band-edge { position: absolute; left: 0; width: 100%; height: clamp(28px, 5.5vw, 80px); }
+.band-edge-top { bottom: calc(100% - 1px); fill: var(--meadow); }
+.band-edge-bottom { bottom: -1px; fill: var(--paper); }
+.handled-grid { display: grid; gap: var(--s6); }
+.handled-photo { width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: cover; object-position: 62% 50%; border-radius: var(--radius-panel); }
+.care-list { margin: var(--s6) 0 0; }
+.care-list div + div { margin-top: var(--s5); }
+.care-list dt { display: flex; align-items: center; gap: var(--s3); font: 700 clamp(22px, 3vw, 26px)/1.15 var(--display); letter-spacing: -0.02em; color: var(--ink); }
+.care-list dt svg { flex: none; width: 22px; height: 24px; fill: var(--action); }
+.care-list dd { margin: var(--s2) 0 0 calc(22px + var(--s3)); max-width: 30em; }
+.more { margin-top: var(--s6); }
+.handled .link { color: var(--action-dark); }
+
+/* ---------- 4. how it works ---------- */
+.steps { margin-top: var(--s7); display: grid; gap: var(--s6); }
+.step-paw { position: relative; display: block; width: 72px; height: 79px; }
+.step-paw svg { width: 100%; height: 100%; fill: var(--action); }
+.step-paw b { position: absolute; left: 0; right: 0; top: 49%; text-align: center; font: 800 24px/1 var(--display); color: #fff; }
+.steps h3 { margin-top: var(--s4); font-size: clamp(24px, 5.6vw, 32px); line-height: 1.1; font-weight: 800; letter-spacing: -0.02em; }
+.steps p { margin-top: var(--s2); max-width: 28em; }
+
+/* ---------- 5. where we go ---------- */
+.trips-photo { margin-top: var(--s6); width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: cover; object-position: 50% 62%; border-radius: var(--radius-panel); }
+.trips-grid { margin-top: var(--s7); display: grid; gap: var(--s6); }
+.map { display: block; width: 100%; height: auto; max-width: 460px; margin-inline: auto; }
+.map-ground { fill: var(--meadow); }
+.map-hills { fill: var(--meadow-deep); }
+.map-sun circle { fill: #f59e0b; }
+.map-sun line { stroke: #d97706; stroke-width: 3.5; }
+.map-route { fill: none; stroke: var(--muted); stroke-width: 1.5; stroke-dasharray: 2 7; stroke-linecap: round; }
+.map-arrow { fill: none; stroke: var(--muted); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.map-route-open { fill: none; stroke: none; }
+.map .paw { fill: var(--action); }
+.map text { font: 600 18px var(--display); fill: var(--body); letter-spacing: -0.01em; }
+.map-stop circle { fill: var(--paper); stroke: var(--ink); stroke-width: 2; }
+.map-stop.is-open circle { fill: var(--action); stroke: var(--paper); stroke-width: 3; }
+.map-stop.is-open text { font-weight: 800; font-size: 24px; fill: var(--ink); }
+.map-home circle { fill: var(--ink); stroke: var(--paper); stroke-width: 3; }
+.map-home text { font-weight: 700; fill: var(--ink); }
+.map text.map-small { font: 500 15px var(--sans); fill: var(--muted); letter-spacing: 0; }
+
+.trip-list li { border-top: 1px solid var(--line); }
+.trip-list li:last-child { border-bottom: 1px solid var(--line); }
+.trip-row { display: block; padding: var(--s5) 0; color: inherit; text-decoration: none; }
+.trip-top { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: var(--s1) var(--s4); }
+.trip-row h3 { font-size: clamp(24px, 5.6vw, 32px); line-height: 1.1; font-weight: 800; letter-spacing: -0.02em; }
+a.trip-row:hover h3 { color: var(--action); }
+.trip-line { margin-top: var(--s2); max-width: 30em; }
+.trip-meta { margin-top: var(--s2); font-size: 15px; color: var(--muted); }
+.trip-status { font: 700 15px/1.4 var(--sans); color: var(--muted); }
+.trip-status.is-open { color: var(--action); }
+
+.trip-panel { background: var(--forest); color: var(--on-forest); border-radius: var(--radius-panel); margin-top: var(--s8); padding: var(--s7) var(--s5); }
+.panel-title { color: var(--on-forest); font-size: clamp(28px, 6.4vw, 44px); line-height: 1.1; font-weight: 700; }
+.trip-facts { margin-top: var(--s5); max-width: 36em; }
+.trip-lead { margin-top: var(--s4); }
+.trip-facts p + p { margin-top: var(--s4); }
+.trip-facts b { color: #fff; }
+.trip-lead { font: 700 clamp(20px, 3vw, 26px)/1.2 var(--display); letter-spacing: -0.02em; color: #fff; }
+
+/* a blank the owners still have to fill; never ship with one visible */
+.todo { color: var(--todo); border-bottom: 2px dashed currentColor; font-weight: 700; }
+.trip-panel .todo { color: #fbbf24; }
+.handled .todo { color: #92400e; }
+
+/* ---------- 6. who we are, and Whiskey's channel ---------- */
+.whiskey-grid { display: grid; gap: var(--s6); }
+.first { margin-top: var(--s5); font: 700 clamp(20px, 2.8vw, 26px)/1.25 var(--display); letter-spacing: -0.02em; color: var(--ink); }
+.video { display: block; color: var(--ink); text-decoration: none; }
+.video-frame { position: relative; display: block; overflow: hidden; border-radius: var(--radius-panel); background: var(--forest); aspect-ratio: 9 / 16; max-width: 280px; } /* the episode is a vertical video, so its cover is shown upright */
+.video-frame img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s ease; }
+.video:hover .video-frame img { transform: scale(1.03); }
+.video-play { position: absolute; left: var(--s4); bottom: var(--s4); width: 56px; height: 56px; border-radius: 50%; background: var(--paper); display: grid; place-items: center; }
+.video-play svg { width: 24px; height: 24px; fill: var(--action); }
+.video-title { display: block; margin-top: var(--s4); font: 800 clamp(22px, 3vw, 28px)/1.15 var(--display); letter-spacing: -0.02em; }
+.video-sub { display: block; margin-top: var(--s1); color: var(--body); text-decoration: underline; text-underline-offset: 4px; }
+.video-more { margin-top: calc(var(--s2) * -1); }
+
+/* from a large phone up, the upright cover sits beside its caption */
+@media (min-width: 600px) {
+  .video { display: grid; grid-template-columns: 240px minmax(0, 1fr); gap: 0 var(--s5); }
+  .video-frame { grid-row: 1 / span 2; max-width: none; }
+  .video-title { align-self: end; margin-top: 0; }
+  .video-sub { align-self: start; }
+}
+
+@media (min-width: 900px) {
+  .trail { height: 200px; }
+  .moments { gap: var(--s8); }
+  .moments li { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: var(--s7); align-items: center; }
+  .moments li:nth-child(even) { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); }
+  .moments li:nth-child(even) img { order: 2; }
+  .moment-text { margin-top: 0; }
+  .handled { padding-top: var(--s8); }
+  .handled-grid { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: var(--s8); align-items: start; }
+  .handled-photo { aspect-ratio: 4 / 5; position: sticky; top: var(--s6); }
+  /* each step shares three rows (paw, heading, text), so the text lines up when one heading wraps */
+  .steps { grid-template-columns: repeat(3, minmax(0, 1fr)); grid-template-rows: auto auto auto; gap: 0 var(--s7); }
+  .steps li { display: grid; grid-row: span 3; grid-template-rows: subgrid; }
+  .trips-photo { aspect-ratio: 21 / 9; }
+  .trips-grid { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: var(--s8); align-items: start; }
+  .map { position: sticky; top: var(--s6); }
+  .trip-panel { margin-top: var(--s9); padding: var(--s8); display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: var(--s6) var(--s8); }
+  .trip-panel .trip-facts { grid-column: 2; grid-row: 1 / span 2; margin-top: 0; }
+  .trip-panel .cta-row { grid-column: 1; grid-row: 2; align-self: end; margin-top: 0; }
+  .whiskey-grid { grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); gap: var(--s6) var(--s8); align-items: start; }
+  .whiskey-grid > div { grid-column: 1; grid-row: 1; }
+  .whiskey-grid .video { grid-column: 2; grid-row: 1 / span 2; }
+  .video-more { grid-column: 1; grid-row: 2; margin-top: 0; }
+}
+
+/* ---------- 8. the form ---------- */
+.enquire-grid { display: grid; gap: var(--s7); }
+.trail-beside { display: none; }
+.field + .field { margin-top: var(--s5); }
+label { display: block; font: 700 15px/1.4 var(--sans); color: var(--ink); margin-bottom: var(--s2); }
+input, textarea {
+  width: 100%; min-height: 52px; padding: var(--s3) var(--s4);
+  font: 400 17px/1.5 var(--sans); color: var(--ink);
+  background: #fff; border: 2px solid var(--line); border-radius: var(--radius);
+}
+textarea { resize: vertical; }
+input:hover, textarea:hover { border-color: var(--muted); }
+input[aria-invalid="true"] { border-color: #b91c1c; }
+.hint { font-size: 14px; color: var(--muted); margin-top: var(--s2); }
+.hint.is-error { color: #b91c1c; font-weight: 600; }
+.hp { position: absolute; left: -9999px; }
+.btn-send { width: 100%; margin-top: var(--s6); }
+.result { margin-top: var(--s4); font-weight: 600; color: var(--ink); }
+.result:empty { display: none; }
+
+@media (min-width: 900px) {
+  .enquire-grid { grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: var(--s8); }
+  .enquire-grid > div { display: flex; flex-direction: column; }
+  .trail-beside { display: block; flex: 1; min-height: 200px; height: auto; margin-top: var(--s6); }
+  .btn-send { width: auto; min-width: 200px; }
+}
+
+/* ---------- 9. footer ---------- */
+.foot { padding: var(--s7) 0 var(--s8); border-top: 1px solid var(--line); font-size: 15px; }
+.foot p + p, .foot nav { margin-top: var(--s3); }
+.foot-line b { color: var(--ink); font-family: var(--display); font-size: 18px; }
+.foot nav { display: flex; flex-wrap: wrap; gap: 0 var(--s5); }
+.foot a { display: inline-flex; align-items: center; min-height: 44px; min-width: 44px; color: var(--body); text-underline-offset: 4px; }
+.foot a:hover { color: var(--action); }
+.foot-small { color: var(--muted); }
+
+/* ---------- wider screens ---------- */
+@media (min-width: 900px) {
+  :root { --gutter: 40px; }
+  section { padding: var(--s9) 0; }
+  .hero { padding-top: var(--s7); }
+  .hero-photo { margin-top: calc(var(--s9) * -1); }
+}

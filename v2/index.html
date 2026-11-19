@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Trails Unseen: trips built around your dog</title>
+<meta name="description" content="Private three-night trips from Bengaluru, planned for your dog first: walks, a stream to swim in and slow afternoons together. The stay, the drive and the meals are arranged, and we know a vet near every stop.">
+<!-- v2 is a draft beside the live site. Remove this line when v2 replaces the home page. -->
+<meta name="robots" content="noindex">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Trails Unseen">
+<meta property="og:title" content="Trails Unseen: trips built around your dog">
+<meta property="og:description" content="Private three-night trips from Bengaluru, planned for your dog first: walks, a stream to swim in and slow afternoons together. The stay, the drive and the meals are arranged, and we know a vet near every stop.">
+<meta property="og:image" content="https://trailsunseen.com/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../favicon.ico" sizes="32x32">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<meta name="theme-color" content="#fffdf7">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css?v=12">
+<script>document.documentElement.className = 'js';</script>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap top-row">
+    <a class="logo" href="./" aria-label="Trails Unseen, home">
+      <svg viewBox="0 0 120 120" aria-hidden="true">
+        <clipPath id="logo-clip"><circle cx="60" cy="60" r="60"/></clipPath>
+        <g clip-path="url(#logo-clip)">
+          <rect width="120" height="120" fill="#fef3c7"/>
+          <g stroke="#d97706" stroke-width="4.5" stroke-linecap="round"><line x1="56.1" y1="52.5" x2="49.2" y2="48.5"/><line x1="64.5" y1="44.1" x2="60.5" y2="37.2"/><line x1="76" y1="41" x2="76" y2="33"/><line x1="87.5" y1="44.1" x2="91.5" y2="37.2"/><line x1="95.9" y1="52.5" x2="102.8" y2="48.5"/></g>
+          <circle cx="76" cy="64" r="17" fill="#f59e0b"/>
+          <path d="M0 74 C 28 58, 52 60, 78 70 C 94 76, 108 72, 120 64 V120 H0 Z" fill="#22c55e"/>
+          <path d="M0 90 C 36 72, 74 72, 120 88 V120 H0 Z" fill="#15803d"/>
+          <path d="M40 120 C 50 108, 80 106, 68 96 C 62 91, 66 86, 72 82" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round"/>
+        </g>
+        <circle cx="60" cy="60" r="58.5" fill="none" stroke="#0f2f24" stroke-width="3"/>
+      </svg>
+      <span>Trails <b>Unseen</b></span>
+    </a>
+    <a class="btn btn-small top-cta" href="#form">Tell us about your dog</a>
+  </div>
+</header>
+
+<!-- The paw print used by the trail, the step numbers and the list marks. Decorative. -->
+<svg class="sprite" aria-hidden="true" focusable="false" width="0" height="0">
+  <symbol id="paw" viewBox="0 0 40 44">
+    <ellipse cx="7.5" cy="19" rx="4.2" ry="5.8" transform="rotate(-22 7.5 19)"/>
+    <ellipse cx="15.5" cy="9" rx="4.5" ry="6.2" transform="rotate(-7 15.5 9)"/>
+    <ellipse cx="24.5" cy="9" rx="4.5" ry="6.2" transform="rotate(7 24.5 9)"/>
+    <ellipse cx="32.5" cy="19" rx="4.2" ry="5.8" transform="rotate(22 32.5 19)"/>
+    <path d="M20 21c-6.2 0-11.8 6.2-11.8 12.8 0 4.600 3.5 7.2 7.2 7.2 2 0 3.100-.9 4.600-.9s2.600.9 4.600.9c3.700 0 7.2-2.600 7.2-7.2C31.8 27.2 26.2 21 20 21z"/>
+  </symbol>
+</svg>
+
+<!-- Side trail (wide screens only): a paw marks the section you are reading. -->
+<nav class="rail" aria-label="On this page">
+  <a href="#days"><svg aria-hidden="true"><use href="#paw"/></svg><span>The trip</span></a>
+  <a href="#handled"><svg aria-hidden="true"><use href="#paw"/></svg><span>Taken care of</span></a>
+  <a href="#how"><svg aria-hidden="true"><use href="#paw"/></svg><span>How it works</span></a>
+  <a href="#trips"><svg aria-hidden="true"><use href="#paw"/></svg><span>Where we go</span></a>
+  <a href="#whiskey"><svg aria-hidden="true"><use href="#paw"/></svg><span>Whiskey</span></a>
+  <a href="#form"><svg aria-hidden="true"><use href="#paw"/></svg><span>Your dog</span></a>
+</nav>
+
+<main>
+
+<!-- 1. HERO -->
+<section class="hero" aria-labelledby="hero-title">
+  <div class="wrap hero-text">
+    <h1 id="hero-title">Trips built around your dog.</h1>
+    <p class="hero-sub">Three nights away, planned for your dog first: walks, a stream to swim in and slow afternoons together. Everything is arranged, from your door in Bengaluru and back.</p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="#form">Tell us about your dog</a>
+      <a class="btn btn-quiet" href="#trips">See the trips</a>
+    </div>
+  </div>
+
+  <!--
+    HERO IMAGE: a generated golden retriever (owners' pick, 2026-11-19: the field draft), rendered at high quality.
+    It is never captioned as Whiskey or as a real trip. Prompts are logged in brief/PROMPTS.md.
+  -->
+  <figure class="hero-photo">
+    <img src="img/hero-field.jpg?v=2" width="1536" height="1024"
+         alt="A golden retriever running across an open field in the morning, with misty green hills behind">
+  </figure>
+</section>
+
+<div class="wrap"><div class="trail" data-shape="right" aria-hidden="true"></div></div>
+
+<!-- 2. THE TRIP IS FOR YOUR DOG: the days, in pictures -->
+<section class="days" id="days" aria-labelledby="days-title">
+  <div class="wrap">
+    <h2 id="days-title">Every day has something your dog loves.</h2>
+    <p class="lede">And you do it together. This is the Coorg trip, the one you can book now.</p>
+    <!--
+      These four come from the current itinerary. The owners' final itinerary replaces them.
+      The images are low-quality generated drafts (2026-11-19), not yet picked by the owners. See brief/PROMPTS.md.
+    -->
+    <ol class="moments">
+      <li>
+        <img src="img/moment-1-walk.jpg" width="1200" height="800" loading="lazy"
+             alt="A golden retriever on a leash walking beside its owner on a path between coffee plants, in evening light">
+        <div class="moment-text">
+          <h3>An evening walk in the coffee rows.</h3>
+          <p>You set out between the coffee plants, at your dog's pace.</p>
+        </div>
+      </li>
+      <li>
+        <img src="img/moment-2-swim.jpg" width="1200" height="800" loading="lazy"
+             alt="A golden retriever in a clear forest stream, facing the camera">
+        <div class="moment-text">
+          <h3>A swim in the stream.</h3>
+          <p>Your dog swims in a stream where we've seen the water and the banks ourselves.</p>
+        </div>
+      </li>
+      <li>
+        <img src="img/moment-3-verandah.jpg" width="1200" height="800" loading="lazy"
+             alt="A golden retriever asleep on a verandah floor beside a person's bare feet and a cup of coffee">
+        <div class="moment-text">
+          <h3>A slow afternoon on the verandah.</h3>
+          <p>Nothing is planned for either of you.</p>
+        </div>
+      </li>
+      <li>
+        <img src="img/moment-4-ridge.jpg" width="1200" height="800" loading="lazy"
+             alt="A golden retriever and its owner sitting on a grassy ridge, seen from behind, looking over misty hills at sunrise">
+        <div class="moment-text">
+          <h3>An early drive up to the ridge.</h3>
+          <p>You're up early, while it's cool, for the view from the top.</p>
+        </div>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<div class="wrap"><div class="trail" data-shape="center" aria-hidden="true"></div></div>
+
+<!-- 3. YOU PLAN NOTHING: food, activities, the stay, the drive, safety -->
+<section class="handled" id="handled" aria-labelledby="handled-title">
+  <svg class="band-edge band-edge-top" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true"><path d="M0 52 C 300 2, 620 12, 900 46 C 1100 70, 1280 58, 1440 22 V80 H0 Z"/></svg>
+  <div class="wrap handled-grid">
+    <!-- A generated draft (the unused coffee-path hero draft). Mood only. -->
+    <img class="handled-photo" src="img/handled-coffee.jpg" width="1200" height="800" loading="lazy"
+         alt="A golden retriever on a path between coffee plants, looking back over its shoulder">
+    <div>
+      <h2 id="handled-title">You plan nothing. It's all taken care of.</h2>
+      <dl class="care-list">
+        <div>
+          <dt><svg aria-hidden="true"><use href="#paw"/></svg>Food</dt>
+          <dd>Your meals are arranged for the whole trip. <span class="todo" title="Owner input: confirm what you do about the dog's food">Tell us what your dog eats and we plan for that too.</span></dd>
+        </div>
+        <div>
+          <dt><svg aria-hidden="true"><use href="#paw"/></svg>Activities</dt>
+          <dd>One unhurried thing each day, chosen for your dog. Nothing for you to book.</dd>
+        </div>
+        <div>
+          <dt><svg aria-hidden="true"><use href="#paw"/></svg>The stay</dt>
+          <dd>We visit every stay first and check the fences, the floors and how the staff are with dogs. Your dog sleeps in your room.</dd>
+        </div>
+        <div>
+          <dt><svg aria-hidden="true"><use href="#paw"/></svg>The drive</dt>
+          <dd>A car and driver just for your family. Your dog rides next to you, and we stop for water and a walk.</dd>
+        </div>
+        <div>
+          <dt><svg aria-hidden="true"><use href="#paw"/></svg>Safety</dt>
+          <dd>We've spoken to a vet near every stop, one you can reach at night. Your driver takes you there.</dd>
+        </div>
+      </dl>
+      <p class="more"><a class="link" href="../safety.html">How we keep your dog safe</a></p>
+    </div>
+  </div>
+  <svg class="band-edge band-edge-bottom" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true"><path d="M0 34 C 260 74, 560 10, 860 38 C 1100 60, 1300 22, 1440 46 V80 H0 Z"/></svg>
+</section>
+
+<div class="wrap"><div class="trail" data-shape="left" aria-hidden="true"></div></div>
+
+<!-- 4. HOW IT WORKS -->
+<section class="how" id="how" aria-labelledby="how-title">
+  <div class="wrap">
+    <h2 id="how-title">How it works.</h2>
+    <ol class="steps">
+      <li>
+        <span class="step-paw" aria-hidden="true"><svg><use href="#paw"/></svg><b>1</b></span>
+        <h3>Tell us about your dog.</h3>
+        <p>Their size and energy, whether they swim and how they are with strangers. It shapes the walks, the swims and the pace.</p>
+      </li>
+      <li>
+        <span class="step-paw" aria-hidden="true"><svg><use href="#paw"/></svg><b>2</b></span>
+        <h3>We call you with the plan.</h3>
+        <p>A day-by-day plan for your trip, and the price.</p>
+      </li>
+      <li>
+        <span class="step-paw" aria-hidden="true"><svg><use href="#paw"/></svg><b>3</b></span>
+        <h3>We pick you up.</h3>
+        <p>From your door in Bengaluru, and back. If your dog is tired or unwell on the day, we change the plan.</p>
+      </li>
+    </ol>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="#form">Tell us about your dog</a>
+    </div>
+  </div>
+</section>
+
+<div class="wrap"><div class="trail" data-shape="center" aria-hidden="true"></div></div>
+
+<!-- 5. WHERE WE GO: the map, the list, and Coorg in short -->
+<section class="trips" id="trips" aria-labelledby="trips-title">
+  <div class="wrap">
+    <h2 id="trips-title">Where we go.</h2>
+    <!-- A generated draft (the unused ridge hero draft). Mood only. -->
+    <img class="trips-photo" src="img/trips-ridge.jpg" width="1536" height="1024" loading="lazy"
+         alt="A golden retriever standing on a grassy ridge, looking out over misty green hills">
+
+    <div class="trips-grid">
+      <!-- A sketch map. Places are in roughly their true positions; it is not to scale. -->
+      <svg class="map" viewBox="0 0 400 420" role="img"
+           aria-label="A sketch map. Bengaluru is on the right. Chikmagalur, Sakleshpur, Coorg and Wayanad are in the hills to the west. Hyderabad is to the north. A trail of paw prints runs from Bengaluru to Coorg.">
+        <rect class="map-ground" width="400" height="420" rx="28"/>
+        <path class="map-hills" d="M0 28 A28 28 0 0 1 28 0 H236 C 262 60, 222 110, 246 170 C 268 225, 232 280, 256 330 C 272 370, 250 400, 262 420 H28 A28 28 0 0 1 0 392 Z"/>
+        <g class="map-sun">
+          <g stroke-linecap="round"><line x1="52" y1="50" x2="43" y2="46"/><line x1="60" y1="36" x2="55" y2="27"/><line x1="76" y1="30" x2="76" y2="20"/><line x1="92" y1="36" x2="97" y2="27"/><line x1="100" y1="50" x2="109" y2="46"/></g>
+          <circle cx="76" cy="60" r="17"/>
+        </g>
+        <path class="map-route" d="M288 188 Q 244 140 190 144"/>
+        <path class="map-route" d="M288 188 Q 246 180 190 191"/>
+        <path class="map-route" d="M288 188 Q 282 300 211 350"/>
+        <path class="map-route" d="M288 188 Q 320 112 296 52"/>
+        <path class="map-arrow" d="M288 62 L296 50 L306 60"/>
+        <path class="map-route-open" id="route-coorg" d="M288 188 Q 252 250 188 252"/>
+        <g class="map-stop"><circle cx="190" cy="144" r="6"/><text x="176" y="150" text-anchor="end">Chikmagalur</text></g>
+        <g class="map-stop"><circle cx="190" cy="191" r="6"/><text x="176" y="197" text-anchor="end">Sakleshpur</text></g>
+        <g class="map-stop"><circle cx="211" cy="350" r="6"/><text x="197" y="356" text-anchor="end">Wayanad</text></g>
+        <g class="map-stop is-open"><circle cx="188" cy="252" r="8"/><text x="172" y="259" text-anchor="end">Coorg</text></g>
+        <g class="map-home"><circle cx="288" cy="188" r="7"/><text x="302" y="186">Bengaluru</text><text class="map-small" x="302" y="204">your door</text></g>
+        <text class="map-small" x="296" y="38" text-anchor="middle">Hyderabad</text>
+      </svg>
+
+      <!-- Coorg and From Hyderabad are from the live site. Chikmagalur, Sakleshpur and Wayanad were picked by Claude at the owners' instruction (2026-11-19): the owners confirm them before this goes live. Their lines describe the place only. -->
+      <ul class="trip-list">
+        <li>
+          <a class="trip-row" href="#coorg">
+            <div class="trip-top"><h3>Coorg, the slow way</h3><p class="trip-status is-open">Booking now</p></div>
+            <p class="trip-line">Coffee estates, a stream to swim in and a ridge-top view, paced for your dog.</p>
+            <p class="trip-meta">Three nights, from Bengaluru</p>
+          </a>
+        </li>
+        <li>
+          <div class="trip-row">
+            <div class="trip-top"><h3>Chikmagalur</h3><p class="trip-status">Coming soon</p></div>
+            <p class="trip-line">Coffee hills, grassland trails and Karnataka's highest peak close by.</p>
+            <p class="trip-meta">From Bengaluru</p>
+          </div>
+        </li>
+        <li>
+          <div class="trip-row">
+            <div class="trip-top"><h3>Sakleshpur</h3><p class="trip-status">Coming soon</p></div>
+            <p class="trip-line">Green hills, quiet streams and coffee and cardamom estates in the Western Ghats.</p>
+            <p class="trip-meta">From Bengaluru</p>
+          </div>
+        </li>
+        <li>
+          <div class="trip-row">
+            <div class="trip-top"><h3>Wayanad</h3><p class="trip-status">Coming soon</p></div>
+            <p class="trip-line">Forest roads, tea and spice estates and misty hills, across the border in Kerala.</p>
+            <p class="trip-meta">From Bengaluru</p>
+          </div>
+        </li>
+        <li>
+          <div class="trip-row">
+            <div class="trip-top"><h3>Near Hyderabad</h3><p class="trip-status">Coming soon</p></div>
+            <p class="trip-line">Old boulders, quiet lakes and forest trails within a short drive of the city.</p>
+            <p class="trip-meta">For families in Hyderabad</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <p class="more">Want a trip that isn't listed? <a class="link" href="#form">Tell us where</a></p>
+
+    <div class="trip-panel" id="coorg">
+      <div class="panel-head">
+        <h3 class="panel-title">The Coorg trip, in short.</h3>
+        <p class="trip-lead">Every trip is private: just your family and your dog.</p>
+      </div>
+      <div class="trip-facts">
+        <p><b>From <span class="todo" title="Owner input: the from price">₹ price</span></b> for 2 adults and 1 dog. The car, the driver, the stay and your meals are included. Children are welcome; the price depends on how many of you travel.</p>
+        <p>You'll stay at <span class="todo" title="Owner input: stay name">stay name</span>, a coffee-estate homestay, or <span class="todo" title="Owner input: stay name">stay name</span>, a riverside cottage, depending on your dates.</p>
+        <p>The drive is about 5–6 hours each way, with breaks. Coorg is cool and misty from October to March.</p>
+      </div>
+      <div class="cta-row">
+        <a class="btn btn-light" href="#form">Tell us about your dog</a>
+        <a class="link link-light" href="../coorg.html">See the full Coorg plan</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap"><div class="trail" data-shape="right" aria-hidden="true"></div></div>
+
+<!-- 6. WHO WE ARE, AND WHISKEY'S CHANNEL -->
+<section class="whiskey" id="whiskey" aria-labelledby="whiskey-title">
+  <div class="wrap whiskey-grid">
+    <div>
+      <!-- PHOTO SLOT: a real photo of Whiskey with the two families. Real only. -->
+      <h2 id="whiskey-title">We're two families and a golden retriever.</h2>
+      <p class="lede">We kept saying no to trips because Whiskey couldn't come. So we built the trips we wanted to take with him.</p>
+      <!-- No guest has travelled yet, so there are no guest stories. They go here after the first trips. -->
+      <p class="first">We're booking our first families now. Be one of them.</p>
+    </div>
+    <!-- The thumbnail is the real one from the owners' own video, loaded from YouTube. -->
+    <a class="video" href="https://www.youtube.com/watch?v=A6CPXjQVf9A" rel="noopener">
+      <span class="video-frame">
+        <img src="https://i.ytimg.com/vi/A6CPXjQVf9A/oar2.jpg" width="480" height="360" loading="lazy" alt="The cover of the episode “If Dogs Planned the Vacation”">
+        <span class="video-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z"/></svg></span>
+      </span>
+      <span class="video-title">If Dogs Planned the Vacation</span>
+      <span class="video-sub">Watch Whiskey's first episode on YouTube</span>
+    </a>
+    <p class="video-more"><a class="link" href="https://www.instagram.com/tailsunseen/" rel="noopener">Follow Whiskey on Instagram</a></p>
+  </div>
+</section>
+
+<div class="wrap"><div class="trail" data-shape="left" data-end="sit" data-when="narrow" aria-hidden="true"></div></div>
+
+<!-- 7. THE FORM (the page's one job) -->
+<section class="enquire" id="form" aria-labelledby="form-title">
+  <div class="wrap enquire-grid">
+    <div>
+      <h2 id="form-title">Tell us about your dog.</h2>
+      <p class="lede">We'll call you within a day. Nothing to pay until you've seen the plan and the price.</p>
+      <!-- On wide screens the trail walks down beside the form and the dog sits to wait. -->
+      <div class="trail trail-beside" data-shape="center" data-end="sit" aria-hidden="true"></div>
+    </div>
+
+    <form id="enquiry" action="mailto:hello@trailsunseen.com" method="post" enctype="text/plain" novalidate>
+      <div class="field">
+        <label for="f-name">Your name</label>
+        <input id="f-name" name="name" type="text" autocomplete="name" required>
+      </div>
+      <div class="field">
+        <label for="f-phone">Phone</label>
+        <input id="f-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" required aria-describedby="f-phone-hint">
+        <p class="hint" id="f-phone-hint">We'll call you on this number.</p>
+      </div>
+      <div class="field">
+        <label for="f-dog">Your dog's name and breed</label>
+        <input id="f-dog" name="dog" type="text">
+      </div>
+      <div class="field">
+        <label for="f-when">When would you like to go?</label>
+        <input id="f-when" name="when" type="text">
+      </div>
+      <div class="field">
+        <label for="f-note">Anything we should know?</label>
+        <textarea id="f-note" name="note" rows="3" aria-describedby="f-note-hint"></textarea>
+        <p class="hint" id="f-note-hint">Loves water, shy with strangers, gets car-sick…</p>
+      </div>
+      <div class="hp" aria-hidden="true">
+        <label for="f-site">Leave this empty</label>
+        <input id="f-site" name="_honey" type="text" tabindex="-1" autocomplete="off">
+      </div>
+      <button class="btn btn-primary btn-send" type="submit">Send</button>
+      <p class="result" id="result" role="status" aria-live="polite"></p>
+    </form>
+  </div>
+</section>
+
+</main>
+
+<!-- 8. FOOTER -->
+<footer class="foot">
+  <div class="wrap">
+    <p class="foot-line"><b>Trails Unseen.</b> Trips from Bengaluru for you and your dog.</p>
+    <p><a href="mailto:hello@trailsunseen.com">hello@trailsunseen.com</a></p>
+    <!-- Cancellation and Terms are left out until their pages have real terms (DECISIONS.md, open question 8). -->
+    <nav aria-label="Pages">
+      <a href="../coorg.html">Coorg trip</a>
+      <a href="../safety.html">Your dog's safety</a>
+      <a href="../faq.html">FAQ</a>
+      <a href="../privacy.html">Privacy</a>
+    </nav>
+    <nav aria-label="Whiskey's channels">
+      <a href="https://www.youtube.com/@tailsunseen" rel="noopener">Whiskey on YouTube</a>
+      <a href="https://www.instagram.com/tailsunseen/" rel="noopener">Whiskey on Instagram</a>
+    </nav>
+    <p class="foot-small">© 2026 Trails Unseen</p>
+  </div>
+</footer>
+
+<script src="site.js?v=10"></script>
+</body>
+</html>
