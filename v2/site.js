@@ -1,6 +1,6 @@
 // Trails Unseen — home page v2.
 // The page reads as a plain document without this file. It sends the enquiry form,
-// and draws the paw trail, one print after another as each stretch is reached.
+// changes the pinned picture in the dog's day, and walks the map route in paw prints.
 
 // Where enquiries are posted. Paste the form service's endpoint here
 // (for example a Formspree or FormSubmit URL that emails hello@trailsunseen.com).
@@ -83,7 +83,7 @@ var CONTACT_EMAIL = "hello@trailsunseen.com";
   });
 })();
 
-// ---- The paw trail, the fade-ins and the side trail ----
+// ---- The dog's day (one pinned picture), the map's paw prints and the side list ----
 // One IntersectionObserver each; no scroll listener.
 (function () {
   var NS = 'http://www.w3.org/2000/svg';
@@ -113,57 +113,21 @@ var CONTACT_EMAIL = "hello@trailsunseen.com";
       var a = Math.atan2(t.y - f.y, t.x - f.x);
       return { x: p.x, y: p.y, a: a, nx: -Math.sin(a), ny: Math.cos(a) };
     }
-    var end = len - o.endPad - (o.sit ? o.step : 0);
-    for (var d = o.startPad; d <= end; d += o.step) {
+    for (var d = o.startPad; d <= len - o.endPad; d += o.step) {
       var t = at(d), side = (n % 2 ? 1 : -1) * o.spread;
       put(t.x + t.nx * side, t.y + t.ny * side, t.a * 180 / Math.PI + 90);
       n++;
     }
-    if (o.sit) { // the dog stops and sits: two prints side by side
-      var e = at(len - o.endPad), w = o.size * 0.75;
-      put(e.x - e.nx * w, e.y - e.ny * w, e.a * 180 / Math.PI + 90);
-      put(e.x + e.nx * w, e.y + e.ny * w, e.a * 180 / Math.PI + 90);
-    }
     svg.appendChild(g);
     return g;
   }
-
-  // Each shape runs from y = a to y = b, so the prints keep clear of what sits above and below the trail.
-  function y(a, b, f) { return (a + (b - a) * f).toFixed(1); }
-  var shapes = {
-    right:  function (w, a, b) { return 'M' + 0.2 * w + ' ' + a + ' C ' + 0.2 * w + ' ' + y(a, b, 0.55) + ', ' + 0.7 * w + ' ' + y(a, b, 0.45) + ', ' + 0.7 * w + ' ' + b; },
-    left:   function (w, a, b) { return 'M' + 0.75 * w + ' ' + a + ' C ' + 0.75 * w + ' ' + y(a, b, 0.55) + ', ' + 0.25 * w + ' ' + y(a, b, 0.45) + ', ' + 0.25 * w + ' ' + b; },
-    center: function (w, a, b) { return 'M' + 0.32 * w + ' ' + a + ' C ' + 0.32 * w + ' ' + y(a, b, 0.55) + ', ' + 0.6 * w + ' ' + y(a, b, 0.45) + ', ' + 0.6 * w + ' ' + b; }
-  };
-
-  function drawTrail(el) {
-    var w = el.clientWidth, h = el.clientHeight;
-    if (!w || !h || el._w === w + 'x' + h) return;
-    el._w = w + 'x' + h;
-    el.textContent = '';
-    var svg = document.createElementNS(NS, 'svg');
-    svg.setAttribute('viewBox', '0 0 ' + w + ' ' + h);
-    var path = document.createElementNS(NS, 'path');
-    var small = w < 600, inset = small ? 30 : 38;
-    path.setAttribute('d', (shapes[el.getAttribute('data-shape')] || shapes.center)(w, inset, h - inset));
-    path.setAttribute('fill', 'none');
-    svg.appendChild(path);
-    el.appendChild(svg);
-    pawsAlong(svg, path, { size: small ? 18 : 24, step: small ? 34 : 46, spread: small ? 8 : 11, startPad: 0, endPad: 0, sit: el.getAttribute('data-end') === 'sit' && (el.getAttribute('data-when') !== 'narrow' || window.innerWidth < 900) });
-  }
-
-  var trails = [].slice.call(document.querySelectorAll('.trail'));
-  function drawAll() { trails.forEach(drawTrail); }
-  drawAll();
-  var timer;
-  window.addEventListener('resize', function () { clearTimeout(timer); timer = setTimeout(drawAll, 200); });
 
   // The route to Coorg on the map is walked in paw prints.
   var route = document.getElementById('route-coorg');
   var map = route && route.ownerSVGElement;
   if (route) pawsAlong(map, route, { size: 14, step: 16, spread: 5, startPad: 32, endPad: 20 });
 
-  // Prints appear as each trail is reached. Without an observer, they simply show.
+  // The map's prints appear when the map is reached. Without an observer, they simply show.
   if (canWatch) {
     root.classList.add('reveal-on');
     var seen = new IntersectionObserver(function (entries) {
@@ -171,10 +135,31 @@ var CONTACT_EMAIL = "hello@trailsunseen.com";
         if (en.isIntersecting) { en.target.classList.add('is-in'); seen.unobserve(en.target); }
       });
     }, { rootMargin: '0px 0px -12% 0px', threshold: 0.15 });
-    [].slice.call(document.querySelectorAll('.trail, .map')).forEach(function (el) { seen.observe(el); });
+    [].slice.call(document.querySelectorAll('.map')).forEach(function (el) { seen.observe(el); });
   }
 
-  // Side trail: show it after the hero, and mark the section being read.
+  // The dog's day: the pinned picture shows the line that is being read.
+  var beats = [].slice.call(document.querySelectorAll('.beats li'));
+  var frames = [].slice.call(document.querySelectorAll('.stage img'));
+  var count = document.querySelector('.stage-count');
+  if (canWatch && beats.length) {
+    var showBeat = function (i) {
+      frames.forEach(function (im, n) { im.classList.toggle('is-on', n === i); });
+      beats.forEach(function (b, n) { b.classList.toggle('is-on', n === i); });
+      if (count) count.textContent = (i + 1) + ' of ' + beats.length;
+    };
+    // The line being read sits beside the middle of the picture, or, when the picture is above it,
+    // in the middle of the space under the picture.
+    var stage = document.querySelector('.stage');
+    var beside = window.matchMedia('(min-width: 900px)').matches;
+    var at = beside ? 50 : (stage.offsetHeight + (window.innerHeight - stage.offsetHeight) / 2) / window.innerHeight * 100;
+    var day = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) { if (en.isIntersecting) showBeat(beats.indexOf(en.target)); });
+    }, { rootMargin: '-' + (at - 2).toFixed(1) + '% 0px -' + (98 - at).toFixed(1) + '% 0px' });
+    beats.forEach(function (b) { day.observe(b); });
+  }
+
+  // Side list: show it after the hero, and mark the section being read.
   var rail = document.querySelector('.rail');
   var hero = document.querySelector('.hero');
   if (rail && hero && canWatch) {

@@ -47,7 +47,7 @@ body {
 }
 
 img, svg { display: block; max-width: 100%; }
-p, dd { text-wrap: pretty; }
+p, dd, li { text-wrap: pretty; }
 h1, h2, h3 { font-family: var(--display); color: var(--ink); letter-spacing: -0.02em; margin: 0; text-wrap: balance; }
 p { margin: 0; }
 ol, ul { margin: 0; padding: 0; list-style: none; }
@@ -108,20 +108,17 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
           mask-image: linear-gradient(to bottom, transparent 0, #000 34%);
 }
 
-/* ---------- the paw trail: the thread that walks the reader down the page ---------- */
+/* ---------- the paw: a mark on the map route, the list and the side list ---------- */
 .sprite { position: absolute; }
-.trail { height: 132px; }
-.trail svg { display: block; width: 100%; height: 100%; overflow: visible; }
 .paw { fill: var(--paw); }
-
-/* The prints appear one after another as a trail is reached. site.js adds .reveal-on, so without it they simply show. */
+/* The map's prints appear one after another when the map is reached. site.js adds .reveal-on, so without it they simply show. */
 .reveal-on .paws .paw { opacity: 0; transition: opacity .3s ease; }
 .reveal-on .is-in .paws .paw { opacity: 1; }
 @media (prefers-reduced-motion: reduce) {
   .reveal-on .paws .paw { opacity: 1; transition: none; }
 }
 
-/* side trail, wide screens only */
+/* side list, wide screens only */
 .rail { display: none; }
 @media (min-width: 1400px) {
   .rail { position: fixed; left: var(--s5); top: 50%; z-index: 5; display: flex; flex-direction: column; transform: translateY(-50%); opacity: 0; pointer-events: none; transition: opacity .3s ease; }
@@ -133,18 +130,40 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   .rail a.is-here svg { fill: var(--action); transform: scale(1); }
 }
 
-/* every section after the hero follows a trail or a band, so it adds no top gap of its own */
-.days, .handled, .how, .trips, .whiskey, .enquire { padding-top: 0; }
-/* a section that hands over to a trail or a band lets that be the gap */
-.days { padding-bottom: 0; }
-.how, .trips, .whiskey { padding-bottom: var(--s5); }
+/* each section carries its own gap */
+.days, .how, .trips, .whiskey, .enquire { padding-top: var(--s7); }
+.days, .how, .trips, .whiskey { padding-bottom: var(--s7); }
 
-/* ---------- 2. the trip is for your dog ---------- */
-.moments { margin-top: var(--s7); display: grid; gap: var(--s7); }
-.moments img { width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: cover; border-radius: var(--radius-panel); }
-.moment-text { margin-top: var(--s4); }
-.moments h3 { font-size: clamp(24px, 5.6vw, 32px); line-height: 1.04; font-weight: 800; letter-spacing: -0.03em; }
-.moments p { margin-top: var(--s3); font-size: clamp(17px, 2vw, 20px); max-width: 24em; }
+/* ---------- 2. the dog's day: one pinned picture that changes as each line passes ---------- */
+.story { margin-top: var(--s6); }
+.stage { position: sticky; top: 0; z-index: 1; height: 54vh; margin: 0 calc(var(--gutter) * -1); overflow: hidden; background: var(--meadow-deep); }
+.stage img { width: 100%; height: 100%; object-fit: cover; }
+.js .stage img { position: absolute; inset: 0; opacity: 0; transition: opacity .6s ease; }
+.js .stage img.is-on { opacity: 1; }
+.stage .i-view { object-position: 78% 50%; }
+.stage .i-walk { object-position: 40% 50%; }
+.stage .i-slow { object-position: 100% 50%; }
+@media (max-width: 599px) {
+  .stage .i-slow { transform: scale(1.16); transform-origin: 100% 64%; }
+}
+.stage-count { position: absolute; left: var(--gutter); bottom: var(--s4); z-index: 2; padding: var(--s1) var(--s3); border-radius: 999px; background: rgba(8, 28, 20, .7); color: #fff; font: 700 13px/1.6 var(--sans); }
+.beats li { min-height: 46vh; display: flex; flex-direction: column; justify-content: flex-start; padding: var(--s6) 0; }
+.beats h3 { font-size: clamp(26px, 6vw, 40px); line-height: 1.05; font-weight: 800; letter-spacing: -0.03em; }
+.beats p { margin-top: var(--s3); font-size: clamp(18px, 2.2vw, 22px); max-width: 20em; }
+.js .beats li { opacity: .3; transition: opacity .4s ease; }
+.js .beats li.is-on { opacity: 1; }
+/* without the script, the four pictures simply sit in a grid above the four lines */
+@media (min-width: 600px) and (max-width: 899px) {
+  .stage { height: 60vh; }
+  .beats li { min-height: 40vh; }
+  .beats p { max-width: 30em; }
+}
+html:not(.js) .stage { position: static; height: auto; display: grid; grid-template-columns: 1fr 1fr; }
+html:not(.js) .stage-count { display: none; }
+html:not(.js) .beats li { min-height: 0; padding: var(--s5) 0; }
+@media (prefers-reduced-motion: reduce) {
+  .js .stage img, .js .beats li { transition: none; }
+}
 
 /* ---------- 3. you plan nothing ---------- */
 .handled { position: relative; background: var(--meadow); margin-top: clamp(28px, 5.5vw, 80px); padding-top: var(--s7); padding-bottom: calc(var(--s7) + clamp(28px, 5.5vw, 80px)); }
@@ -161,13 +180,20 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 .more { margin-top: var(--s6); }
 .handled .link { color: var(--action-dark); }
 
-/* ---------- 4. how it works ---------- */
-.steps { margin-top: var(--s7); display: grid; gap: var(--s6); }
-.step-paw { position: relative; display: block; width: 72px; height: 79px; }
-.step-paw svg { width: 100%; height: 100%; fill: var(--action); }
-.step-paw b { position: absolute; left: 0; right: 0; top: 49%; text-align: center; font: 800 24px/1 var(--display); color: #fff; }
-.steps h3 { margin-top: var(--s4); font-size: clamp(24px, 5.6vw, 32px); line-height: 1.1; font-weight: 800; letter-spacing: -0.02em; }
-.steps p { margin-top: var(--s2); max-width: 28em; }
+/* ---------- 4. we go there before you do ---------- */
+.gofirst-grid { display: grid; gap: var(--s6); margin-top: var(--s6); }
+/* the painting: a sheet of white paper, slightly crooked, on a pale green block */
+.painting { position: relative; width: min(100% - 28px, 460px); margin-inline: auto; }
+.painting::before { content: ""; position: absolute; inset: 14px -14px -14px 14px; border-radius: var(--radius); background: var(--meadow-deep); transform: rotate(1.5deg); }
+.painting svg { position: relative; display: block; width: 100%; height: auto; background: #fff; border: 1px solid var(--line); border-radius: 6px; transform: rotate(-1.5deg); }
+.gofirst-whiskey { margin-top: var(--s5); font: 700 clamp(18px, 2.4vw, 22px)/1.3 var(--display); letter-spacing: -0.02em; color: var(--ink); max-width: 20em; }
+.checks { display: grid; gap: var(--s6); }
+.checks li { display: grid; grid-template-columns: 56px minmax(0, 1fr); gap: var(--s5); align-items: start; }
+.check-paw { position: relative; display: block; width: 56px; height: 62px; }
+.check-paw svg { width: 100%; height: 100%; fill: var(--action); }
+.check-paw b { position: absolute; left: 0; right: 0; top: 50%; text-align: center; font: 800 20px/1 var(--display); color: #fff; }
+.checks h3 { margin-top: var(--s2); font-size: clamp(22px, 3vw, 28px); line-height: 1.1; font-weight: 800; letter-spacing: -0.02em; }
+.checks p { margin-top: var(--s2); max-width: 28em; }
 
 /* ---------- 5. where we go ---------- */
 .trips-photo { margin-top: var(--s6); width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: cover; object-position: 50% 62%; border-radius: var(--radius-panel); }
@@ -190,78 +216,97 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 .map text.map-small { font: 500 15px var(--sans); fill: var(--muted); letter-spacing: 0; }
 
 .trip-list li { border-top: 1px solid var(--line); }
+.trip-list li.is-open { border: 0; background: var(--meadow); border-radius: var(--radius-panel); padding: var(--s2) var(--s5); margin-bottom: var(--s5); }
+.trip-list li.is-open + li { border-top: 0; }
 .trip-list li:last-child { border-bottom: 1px solid var(--line); }
 .trip-row { display: block; padding: var(--s5) 0; color: inherit; text-decoration: none; }
-.trip-top { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: var(--s1) var(--s4); }
-.trip-row h3 { font-size: clamp(24px, 5.6vw, 32px); line-height: 1.1; font-weight: 800; letter-spacing: -0.02em; }
+.trip-top { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: var(--s2) var(--s4); }
+.trip-row h3 { font-size: clamp(20px, 4.6vw, 24px); line-height: 1.15; font-weight: 800; letter-spacing: -0.02em; }
+.is-open .trip-row h3 { font-size: clamp(26px, 6vw, 36px); line-height: 1.1; }
+.trip-list li:not(.is-open) .trip-row { padding: var(--s4) 0; }
 a.trip-row:hover h3 { color: var(--action); }
-.trip-line { margin-top: var(--s2); max-width: 30em; }
+.trip-line { margin-top: var(--s3); max-width: 30em; }
 .trip-meta { margin-top: var(--s2); font-size: 15px; color: var(--muted); }
 .trip-status { font: 700 15px/1.4 var(--sans); color: var(--muted); }
-.trip-status.is-open { color: var(--action); }
+.trip-status.is-open { color: #fff; background: var(--action); padding: var(--s1) var(--s3); border-radius: 999px; }
+.trip-go { margin-top: var(--s4); display: flex; align-items: center; gap: var(--s2); font-weight: 700; color: var(--action-dark); }
+.trip-go svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+a.trip-row:hover .trip-go { text-decoration: underline; text-underline-offset: 4px; }
 
-.trip-panel { background: var(--forest); color: var(--on-forest); border-radius: var(--radius-panel); margin-top: var(--s8); padding: var(--s7) var(--s5); }
+main > .trips { padding-bottom: 0; }
+.coorg { position: relative; background: var(--forest); color: var(--on-forest); margin-top: calc(var(--s8) + clamp(28px, 5.5vw, 80px)); padding: var(--s7) 0 calc(var(--s7) + clamp(28px, 5.5vw, 80px)); }
+.coorg .band-edge-top { fill: var(--forest); }
+.coorg-grid { display: grid; gap: var(--s6); }
+.coorg-facts { margin-top: 0; }
+.coorg-facts dt { color: #fff; }
+.coorg-facts dt svg { fill: var(--leaf); }
+.coorg-facts dd { color: var(--on-forest); }
+.coorg-facts b { color: #fff; }
 .panel-title { color: var(--on-forest); font-size: clamp(28px, 6.4vw, 44px); line-height: 1.1; font-weight: 700; }
-.trip-facts { margin-top: var(--s5); max-width: 36em; }
 .trip-lead { margin-top: var(--s4); }
-.trip-facts p + p { margin-top: var(--s4); }
-.trip-facts b { color: #fff; }
 .trip-lead { font: 700 clamp(20px, 3vw, 26px)/1.2 var(--display); letter-spacing: -0.02em; color: #fff; }
 
 /* a blank the owners still have to fill; never ship with one visible */
 .todo { color: var(--todo); border-bottom: 2px dashed currentColor; font-weight: 700; }
-.trip-panel .todo { color: #fbbf24; }
+.coorg .todo { color: #fbbf24; }
 .handled .todo { color: #92400e; }
 
 /* ---------- 6. who we are, and Whiskey's channel ---------- */
-.whiskey-grid { display: grid; gap: var(--s6); }
-.first { margin-top: var(--s5); font: 700 clamp(20px, 2.8vw, 26px)/1.25 var(--display); letter-spacing: -0.02em; color: var(--ink); }
-.video { display: block; color: var(--ink); text-decoration: none; }
-.video-frame { position: relative; display: block; overflow: hidden; border-radius: var(--radius-panel); background: var(--forest); aspect-ratio: 9 / 16; max-width: 280px; } /* the episode is a vertical video, so its cover is shown upright */
+.whiskey-grid { display: grid; gap: var(--s7); }
+.whiskey-why { margin-top: var(--s4); max-width: 30em; }
+.follow { margin-top: var(--s6); display: flex; align-items: center; gap: var(--s4); }
+.follow p { font: 700 19px/1.2 var(--display); letter-spacing: -0.01em; color: var(--ink); }
+.follow ul { display: flex; gap: var(--s3); }
+.follow a { display: grid; place-items: center; width: 52px; height: 52px; border-radius: 50%; background: var(--forest); color: #fff; transition: background .2s ease; }
+.follow a:hover, .follow a:focus-visible { background: var(--action); }
+.follow svg { width: 26px; height: 26px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.follow svg .solid { fill: currentColor; stroke: none; }
+.video { position: relative; display: block; width: min(100% - 28px, 270px); margin-inline: auto; color: var(--ink); text-decoration: none; }
+.video::before { content: ""; position: absolute; inset: 14px 14px -14px -14px; border-radius: var(--radius-panel); background: var(--meadow-deep); transform: rotate(2deg); }
+.video-frame { position: relative; display: block; overflow: hidden; border-radius: var(--radius-panel); background: var(--forest); aspect-ratio: 9 / 16; transform: rotate(2deg); transition: transform .3s ease; } /* the episode is a vertical video, so its cover is shown upright */
 .video-frame img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s ease; }
-.video:hover .video-frame img { transform: scale(1.03); }
-.video-play { position: absolute; left: var(--s4); bottom: var(--s4); width: 56px; height: 56px; border-radius: 50%; background: var(--paper); display: grid; place-items: center; }
+.video:hover .video-frame { transform: rotate(0deg); }
+.video-play { position: absolute; left: var(--s4); bottom: var(--s4); display: inline-flex; align-items: center; gap: var(--s2); height: 48px; padding: 0 var(--s4) 0 var(--s3); border-radius: 24px; background: var(--paper); font: 700 15px/1 var(--display); color: var(--ink); }
 .video-play svg { width: 24px; height: 24px; fill: var(--action); }
-.video-title { display: block; margin-top: var(--s4); font: 800 clamp(22px, 3vw, 28px)/1.15 var(--display); letter-spacing: -0.02em; }
-.video-sub { display: block; margin-top: var(--s1); color: var(--body); text-decoration: underline; text-underline-offset: 4px; }
-.video-more { margin-top: calc(var(--s2) * -1); }
-
-/* from a large phone up, the upright cover sits beside its caption */
+/* from a large phone up, the cover sits beside the words */
 @media (min-width: 600px) {
-  .video { display: grid; grid-template-columns: 240px minmax(0, 1fr); gap: 0 var(--s5); }
-  .video-frame { grid-row: 1 / span 2; max-width: none; }
-  .video-title { align-self: end; margin-top: 0; }
-  .video-sub { align-self: start; }
+  .whiskey-grid { grid-template-columns: minmax(0, 1fr) auto; gap: var(--s7); align-items: center; } /* the words sit level with the middle of his picture */
+  .video { width: 240px; margin: 0 var(--s4) 0 14px; }
 }
+@media (prefers-reduced-motion: reduce) { .video-frame { transition: none; } }
 
 @media (min-width: 900px) {
-  .trail { height: 200px; }
-  .moments { gap: var(--s8); }
-  .moments li { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: var(--s7); align-items: center; }
-  .moments li:nth-child(even) { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); }
-  .moments li:nth-child(even) img { order: 2; }
-  .moment-text { margin-top: 0; }
+  .days, .how, .trips, .whiskey, .enquire { padding-top: var(--s8); }
+  .days, .how, .trips, .whiskey { padding-bottom: var(--s8); }
+  .story { margin-top: var(--s7); display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: var(--s8); align-items: start; }
+  .stage { top: 9vh; height: 82vh; max-height: 780px; margin: 0; border-radius: var(--radius-panel); }
+  .stage-count { left: var(--s4); }
+  .beats li { min-height: 82vh; padding: 0; justify-content: center; }
+  .beats li:last-child { min-height: 91vh; }
   .handled { padding-top: var(--s8); }
-  .handled-grid { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: var(--s8); align-items: start; }
+  .handled-grid { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: var(--s8); align-items: start; }
   .handled-photo { aspect-ratio: 4 / 5; position: sticky; top: var(--s6); }
-  /* each step shares three rows (paw, heading, text), so the text lines up when one heading wraps */
-  .steps { grid-template-columns: repeat(3, minmax(0, 1fr)); grid-template-rows: auto auto auto; gap: 0 var(--s7); }
-  .steps li { display: grid; grid-row: span 3; grid-template-rows: subgrid; }
+  .gofirst-grid { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: var(--s8); align-items: start; margin-top: var(--s7); }
+  .painting { width: calc(100% - 14px); margin: 0; position: sticky; top: var(--s7); }
   .trips-photo { aspect-ratio: 21 / 9; }
   .trips-grid { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: var(--s8); align-items: start; }
   .map { position: sticky; top: var(--s6); }
-  .trip-panel { margin-top: var(--s9); padding: var(--s8); display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: var(--s6) var(--s8); }
-  .trip-panel .trip-facts { grid-column: 2; grid-row: 1 / span 2; margin-top: 0; }
-  .trip-panel .cta-row { grid-column: 1; grid-row: 2; align-self: end; margin-top: 0; }
-  .whiskey-grid { grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); gap: var(--s6) var(--s8); align-items: start; }
-  .whiskey-grid > div { grid-column: 1; grid-row: 1; }
-  .whiskey-grid .video { grid-column: 2; grid-row: 1 / span 2; }
-  .video-more { grid-column: 1; grid-row: 2; margin-top: 0; }
+  .coorg { padding-top: var(--s8); padding-bottom: calc(var(--s8) + clamp(28px, 5.5vw, 80px)); }
+  .coorg-grid { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: var(--s8); align-items: start; }
+  .coorg-head { position: sticky; top: var(--s7); }
+  .whiskey-grid { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: var(--s8); align-items: center; }
+  .video { width: 310px; justify-self: end; margin: 0 var(--s4) 0 0; }
 }
 
 /* ---------- 8. the form ---------- */
+.enquire { position: relative; background: var(--meadow); margin-top: clamp(28px, 5.5vw, 80px); }
 .enquire-grid { display: grid; gap: var(--s7); }
-.trail-beside { display: none; }
+#enquiry { background: #fff; border-radius: var(--radius-panel); padding: var(--s5); }
+/* what happens after the form is sent */
+.next { margin-top: var(--s5); counter-reset: next; display: grid; gap: var(--s4); max-width: 26em; }
+.next li { position: relative; padding-left: var(--s7); }
+.next li::before { counter-increment: next; content: counter(next); position: absolute; left: 0; top: 1px; width: 28px; height: 28px; border-radius: 50%; background: var(--action); color: #fff; font: 800 15px/28px var(--display); text-align: center; }
+.next b { display: block; color: var(--ink); font-family: var(--display); font-size: 19px; letter-spacing: -0.01em; }
 .field + .field { margin-top: var(--s5); }
 label { display: block; font: 700 15px/1.4 var(--sans); color: var(--ink); margin-bottom: var(--s2); }
 input, textarea {
@@ -280,14 +325,14 @@ input[aria-invalid="true"] { border-color: #b91c1c; }
 .result:empty { display: none; }
 
 @media (min-width: 900px) {
-  .enquire-grid { grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: var(--s8); }
-  .enquire-grid > div { display: flex; flex-direction: column; }
-  .trail-beside { display: block; flex: 1; min-height: 200px; height: auto; margin-top: var(--s6); }
+  .enquire-grid { grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: var(--s8); align-items: start; }
+  #enquiry { padding: var(--s7); }
+  .enquire-grid > div { position: sticky; top: var(--s7); }
   .btn-send { width: auto; min-width: 200px; }
 }
 
 /* ---------- 9. footer ---------- */
-.foot { padding: var(--s7) 0 var(--s8); border-top: 1px solid var(--line); font-size: 15px; }
+.foot { padding: var(--s7) 0 var(--s8); background: var(--meadow); border-top: 1px solid var(--meadow-deep); font-size: 15px; }
 .foot p + p, .foot nav { margin-top: var(--s3); }
 .foot-line b { color: var(--ink); font-family: var(--display); font-size: 18px; }
 .foot nav { display: flex; flex-wrap: wrap; gap: 0 var(--s5); }
