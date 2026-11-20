@@ -193,3 +193,30 @@ var CONTACT_EMAIL = "hello@trailsunseen.com";
   apply();
   if (mq.addEventListener) mq.addEventListener('change', apply);
 })();
+
+// ---- Sections rise into view ----
+// Headings, lines and cards fade up as they are reached; items in a list follow one after another.
+// Only this script hides them, so without it, or with reduced motion, everything simply shows.
+(function () {
+  if (!('IntersectionObserver' in window)) return;
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var picks = [
+    'section:not(.hero) h2', 'section:not(.hero) h2 + p', '.lede', '.whiskey-why', '.follow',
+    '.painting', '.checks > li', '.trips-photo', '.trip-list > li',
+    '.whiskey-grid > :not(:first-child)', '.quotes > li', '.next > li', '#enquiry',
+    '.day', '.plan-note', '.stay-list > li', '.ticks', '.know-list > div', '.trip-cta .btn'
+  ].join(', ');
+  var els = [].slice.call(document.querySelectorAll(picks)).filter(function (el, i, all) {
+    return all.indexOf(el) === i && !el.closest('.hero, .trip-hero, .beats, .stage');
+  });
+  els.forEach(function (el) {
+    el.classList.add('rise');
+    if (el.matches('li')) el.style.transitionDelay = Math.min([].indexOf.call(el.parentNode.children, el), 5) * 90 + 'ms';
+  });
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (en) {
+      if (en.isIntersecting) { en.target.classList.add('risen'); io.unobserve(en.target); }
+    });
+  }, { rootMargin: '0px 0px -8% 0px', threshold: 0.1 });
+  els.forEach(function (el) { io.observe(el); });
+})();
