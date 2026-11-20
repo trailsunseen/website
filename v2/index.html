@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Trails Unseen: trips built around your dog</title>
-<meta name="description" content="Private trips from Bengaluru, planned for your dog first. We arrange the stay, the food and the activities, and we know a vet near every stop. You have nothing to plan.">
+<title>Trails Unseen: custom trips built around your dog</title>
+<meta name="description" content="Private, custom trips from Bengaluru, each made for one family and their dog. We arrange the stay, the food and the activities, and we know a vet near every stop. You have nothing to plan.">
 <!-- v2 is a draft beside the live site. Remove this line when v2 replaces the home page. -->
 <meta name="robots" content="noindex">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Trails Unseen">
-<meta property="og:title" content="Trails Unseen: trips built around your dog">
-<meta property="og:description" content="Private trips from Bengaluru, planned for your dog first. We arrange the stay, the food and the activities, and we know a vet near every stop. You have nothing to plan.">
+<meta property="og:title" content="Trails Unseen: custom trips built around your dog">
+<meta property="og:description" content="Private, custom trips from Bengaluru, each made for one family and their dog. We arrange the stay, the food and the activities, and we know a vet near every stop. You have nothing to plan.">
 <meta property="og:image" content="https://trailsunseen.com/og-image.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -22,7 +22,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=29">
+<link rel="stylesheet" href="styles.css?v=48">
 <script>document.documentElement.className = 'js';</script>
 </head>
 <body>
@@ -44,7 +44,7 @@
       </svg>
       <span>Trails <b>Unseen</b></span>
     </a>
-    <a class="btn btn-small top-cta" href="#form">Tell us about your dog</a>
+    <a class="btn btn-small top-cta" href="#form"><svg class="btn-paw" aria-hidden="true"><use href="#paw"/></svg>Get your quote</a>
   </div>
 </header>
 
@@ -63,9 +63,9 @@
 <nav class="rail" aria-label="On this page">
   <a href="#days"><svg aria-hidden="true"><use href="#paw"/></svg><span>For your dog</span></a>
   <a href="#handled"><svg aria-hidden="true"><use href="#paw"/></svg><span>Taken care of</span></a>
-  <a href="#how"><svg aria-hidden="true"><use href="#paw"/></svg><span>We go first</span></a>
   <a href="#trips"><svg aria-hidden="true"><use href="#paw"/></svg><span>Where we go</span></a>
   <a href="#whiskey"><svg aria-hidden="true"><use href="#paw"/></svg><span>Whiskey</span></a>
+  <a href="#said"><svg aria-hidden="true"><use href="#paw"/></svg><span>Families</span></a>
   <a href="#form"><svg aria-hidden="true"><use href="#paw"/></svg><span>Your dog</span></a>
 </nav>
 
@@ -74,11 +74,10 @@
 <!-- 1. HERO -->
 <section class="hero" aria-labelledby="hero-title">
   <div class="wrap hero-text">
-    <h1 id="hero-title">Trips built around your dog.</h1>
-    <p class="hero-sub">Every trip is planned for your dog first. We arrange the stay, the food and the activities, and we know a vet near every stop. You have nothing to plan.</p>
+    <h1 id="hero-title">Custom trips built around your dog.</h1>
+    <p class="hero-sub">Every trip is made for one family and their dog. We arrange the stay, the food and the activities, and we know a vet near every stop. You have nothing to plan.</p>
     <div class="cta-row">
-      <a class="btn btn-primary" href="#form">Tell us about your dog</a>
-      <a class="btn btn-quiet" href="#trips">See the trips</a>
+      <a class="btn btn-primary" href="#form"><svg class="btn-paw" aria-hidden="true"><use href="#paw"/></svg>Get your quote</a>
     </div>
   </div>
 
@@ -90,14 +89,16 @@
     <img src="img/hero-field.jpg?v=2" width="1536" height="1024"
          alt="A golden retriever running across an open field in the morning, with misty green hills behind">
   </figure>
+  <!-- the picture ends in a line of hills, like the bands further down, never in a straight cut -->
+  <svg class="band-edge band-edge-bottom hero-edge" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true"><path d="M0 56 C 80 64, 150 74, 215 56 C 275 34, 305 10, 385 12 C 455 14, 490 46, 565 52 C 640 58, 665 76, 725 70 C 775 62, 795 22, 855 20 C 925 20, 965 44, 1035 50 C 1105 58, 1125 74, 1185 70 C 1245 60, 1255 20, 1325 18 C 1375 18, 1405 34, 1440 42 V80 H0 Z"/></svg>
 </section>
 
 
 <!-- 2. THE TRIP IS FOR YOUR DOG: the days, in pictures -->
 <section class="days" id="days" aria-labelledby="days-title">
   <div class="wrap">
-    <h2 id="days-title">Every day has something your dog loves.</h2>
-    <p class="lede">And you do it together.</p>
+    <h2 id="days-title">Make memories with your loved one.</h2>
+    <p class="lede">Our trips keep your dog at the centre, with every day planned around what they love.</p>
     <!--
       These four are true of every trip (see "Every trip" and the safety promises in brief/FACTS.md). Nothing here names one destination.
       The images are low-quality generated drafts (2026-11-19), not yet picked by the owners. See brief/PROMPTS.md.
@@ -122,131 +123,85 @@
 </section>
 
 
-<!-- 3. YOU PLAN NOTHING: food, activities, the stay, the drive, safety -->
+<!-- 3. YOU PLAN NOTHING: what is arranged and what is checked, in five points. This band took in the old
+     "We go there before you do" section (round 12): its painting, its paw numbers and its line about phone calls. -->
 <section class="handled" id="handled" aria-labelledby="handled-title">
   <svg class="band-edge band-edge-top" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true"><path d="M0 52 C 300 2, 620 12, 900 46 C 1100 70, 1280 58, 1440 22 V80 H0 Z"/></svg>
   <div class="wrap handled-grid">
-    <div>
+    <div class="handled-head">
       <h2 id="handled-title">You plan nothing. It's all taken care of.</h2>
-      <dl class="care-list">
-        <div>
-          <dt><svg aria-hidden="true"><use href="#paw"/></svg>Food</dt>
-          <dd>Your meals are arranged for the whole trip. <span class="todo" title="Owner input: confirm what you do about the dog's food">Tell us what your dog eats and we plan for that too.</span></dd>
-        </div>
-        <div>
-          <dt><svg aria-hidden="true"><use href="#paw"/></svg>Activities</dt>
-          <dd>Each day's outing is shaped around your dog and arranged by us.</dd>
-        </div>
-        <div>
-          <dt><svg aria-hidden="true"><use href="#paw"/></svg>The stay</dt>
-          <dd>Your dog sleeps in the room with you.</dd>
-        </div>
-        <div>
-          <dt><svg aria-hidden="true"><use href="#paw"/></svg>The drive</dt>
-          <dd>A car and driver just for your family. Your dog rides with you, never in a crate or the boot.</dd>
-        </div>
-        <div>
-          <dt><svg aria-hidden="true"><use href="#paw"/></svg>Safety</dt>
-          <dd>If your dog needs a vet, day or night, your driver takes you there.</dd>
-        </div>
-      </dl>
-      <p class="more"><a class="link" href="../safety.html">How we keep your dog safe</a></p>
-    </div>
-    <!-- A generated draft (the unused coffee-path hero draft). Mood only. -->
-    <img class="handled-photo" src="img/handled-coffee.jpg" width="1200" height="800" loading="lazy"
-         alt="A golden retriever on a path between coffee plants, looking back over its shoulder">
-  </div>
-  <svg class="band-edge band-edge-bottom" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true"><path d="M0 34 C 260 74, 560 10, 860 38 C 1100 60, 1300 22, 1440 46 V80 H0 Z"/></svg>
-</section>
-
-
-<!-- 4. WE GO FIRST: the work a family could not do from home. Replaces "How it works". -->
-<section class="how gofirst" id="how" aria-labelledby="how-title">
-  <div class="wrap">
-    <div class="gofirst-head">
-      <h2 id="how-title">We go there before you do.</h2>
       <p class="lede">Travelling with a dog usually means a dozen phone calls and a lot of hoping. We go and check instead.</p>
     </div>
-    <div class="gofirst-grid">
-      <!-- The painting, and the painter: a drawn golden retriever with the brush in his mouth. It is a cartoon, never a
-           photo, and it shows what is checked (a stay and its fence, the water, a vet, the road in) at no particular place. -->
-      <div class="painting" role="img" aria-label="A drawing of a golden retriever with a paintbrush in his mouth, painting a picture in thick, wobbly strokes: a sun, a house with a fence, a tree, a stream, a green cross and a path, with drips, splatters and paw prints in paint. A label on it reads: Vetted by Whiskey.">
-        <svg class="sheet" viewBox="0 0 400 360" aria-hidden="true">
-          <defs>
-            <filter id="brush" x="-6%" y="-6%" width="112%" height="112%">
-              <feTurbulence type="fractalNoise" baseFrequency="0.022" numOctaves="2" seed="11" result="wobble"/>
-              <feDisplacementMap in="SourceGraphic" in2="wobble" scale="16" xChannelSelector="R" yChannelSelector="G" result="wet"/>
-              <feTurbulence type="fractalNoise" baseFrequency="0.02 0.4" numOctaves="1" seed="4" result="bristle"/>
-              <feColorMatrix in="bristle" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -9 7.6" result="dry"/>
-              <feComposite in="wet" in2="dry" operator="in"/>
-            </filter>
-          </defs>
-          <g filter="url(#brush)" fill="none" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M-10 270 C 60 246, 140 276, 210 256 C 280 238, 340 268, 410 250" stroke="#cfe5bd" stroke-width="64"/>
-            <path d="M-10 330 C 80 316, 200 342, 410 320" stroke="#cfe5bd" stroke-width="76"/>
-            <path d="M-10 196 C 50 150, 110 172, 170 160 C 230 148, 300 118, 410 158" stroke="#9cc98f" stroke-width="13"/>
-            <circle cx="78" cy="66" r="25" fill="#f6a81c"/><path d="M78 22 L78 8" stroke="#f6a81c" stroke-width="8"/><path d="M110 36 L121 25" stroke="#f6a81c" stroke-width="8"/><path d="M124 66 L139 66" stroke="#f6a81c" stroke-width="8"/><path d="M110 96 L120 107" stroke="#f6a81c" stroke-width="8"/><path d="M46 36 L36 26" stroke="#f6a81c" stroke-width="8"/><path d="M32 68 L18 70" stroke="#f6a81c" stroke-width="8"/><path d="M48 98 L39 109" stroke="#f6a81c" stroke-width="8"/>
-            <path d="M320 150 C 282 198, 346 234, 302 282 C 282 306, 302 338, 288 372" stroke="#86c6d4" stroke-width="30"/>
-            <path d="M300 190 q8 -7 16 0 M308 250 q8 -7 16 0 M286 318 q8 -7 16 0" stroke="#dff1f4" stroke-width="5"/>
-            <path d="M72 262 L75 202 L155 198 L159 260 Z" fill="#fff6dc" stroke="#8a5a2b" stroke-width="9"/>
-            <path d="M56 206 L113 150 L176 202 Z" fill="#1c5a38" stroke="#1c5a38" stroke-width="10"/>
-            <path d="M114 258 L115 232" stroke="#8a5a2b" stroke-width="15"/>
-            <path d="M92 222 l1 6 M138 221 l1 6" stroke="#f6a81c" stroke-width="11"/>
-            <path d="M236 256 L238 216" stroke="#8a5a2b" stroke-width="9"/>
-            <circle cx="238" cy="196" r="24" fill="#2f8f4a"/><circle cx="256" cy="210" r="14" fill="#2f8f4a"/>
-            <path d="M40 288 L42 322" stroke="#8a5a2b" stroke-width="7"/><path d="M63 292 L62 320" stroke="#8a5a2b" stroke-width="7"/><path d="M86 286 L88 324" stroke="#8a5a2b" stroke-width="7"/><path d="M109 291 L108 321" stroke="#8a5a2b" stroke-width="7"/><path d="M133 287 L134 323" stroke="#8a5a2b" stroke-width="7"/><path d="M156 292 L157 320" stroke="#8a5a2b" stroke-width="7"/><path d="M180 288 L179 324" stroke="#8a5a2b" stroke-width="7"/><path d="M203 291 L204 321" stroke="#8a5a2b" stroke-width="7"/><path d="M30 305 C 80 298, 150 311, 214 302" stroke="#8a5a2b" stroke-width="6" fill="none"/>
-            <path d="M8 352 l16 -6" stroke="#cfae84" stroke-width="9"/><path d="M44 340 l18 -3" stroke="#cfae84" stroke-width="9"/><path d="M84 335 l18 2" stroke="#cfae84" stroke-width="9"/><path d="M124 340 l18 4" stroke="#cfae84" stroke-width="9"/><path d="M164 349 l16 5" stroke="#cfae84" stroke-width="9"/>
-            <path d="M360 176 V218 M339 197 H381" stroke="#2f8f4a" stroke-width="13"/>
-            <g fill="#2f8f4a" stroke="none">
-              <use href="#paw" x="286" y="26" width="44" height="48" transform="rotate(18 308 50)"/>
-              <use href="#paw" x="338" y="62" width="44" height="48" transform="rotate(26 360 86)"/>
-              <circle cx="262" cy="64" r="4"/><circle cx="274" cy="92" r="2.5"/>
-            </g>
-            <!-- drips, splatters and a smear: the paint was wet and the painter was not careful -->
-            <path d="M96 84 v30 M60 80 v15" stroke="#f6a81c" stroke-width="5"/><circle cx="96" cy="117" r="4.5" fill="#f6a81c"/>
-            <path d="M150 204 v24 M84 206 v13" stroke="#1c5a38" stroke-width="5"/><circle cx="150" cy="230" r="4" fill="#1c5a38"/>
-            <path d="M372 216 v22" stroke="#2f8f4a" stroke-width="5"/><circle cx="372" cy="240" r="4" fill="#2f8f4a"/>
-            <path d="M236 338 C 250 331, 268 335, 288 346" stroke="#86c6d4" stroke-width="14"/>
-            <path d="M196 96 c14 -9 30 -6 40 3" stroke="#f6a81c" stroke-width="12" opacity=".8"/>
-            <g stroke="none">
-              <circle cx="176" cy="58" r="5" fill="#f6a81c"/><circle cx="190" cy="44" r="2.5" fill="#f6a81c"/><circle cx="166" cy="40" r="2" fill="#f6a81c"/>
-              <circle cx="250" cy="128" r="4" fill="#2f8f4a"/><circle cx="238" cy="112" r="2" fill="#2f8f4a"/><circle cx="388" cy="132" r="3" fill="#2f8f4a"/>
-              <circle cx="344" cy="268" r="4" fill="#86c6d4"/><circle cx="356" cy="284" r="2" fill="#86c6d4"/><circle cx="268" cy="330" r="3" fill="#86c6d4"/>
-              <circle cx="40" cy="262" r="3.5" fill="#8a5a2b"/><circle cx="222" cy="330" r="2.5" fill="#8a5a2b"/>
-            </g>
-            <g fill="#8a5a2b" stroke="none" opacity=".85">
-              <use href="#paw" x="216" y="268" width="30" height="33" transform="rotate(-24 231 284)"/>
-            </g>
-            <circle cx="150" cy="116" r="3.5" fill="#f6a81c"/><circle cx="208" cy="300" r="3" fill="#86c6d4"/><circle cx="24" cy="236" r="3" fill="#8a5a2b"/>
+    <!-- The painting, and the painter: a drawn golden retriever with the brush in his mouth. It is a cartoon, never a
+         photo, and it shows what is checked (a stay and its fence, the water, a vet, the road in) at no particular place. -->
+    <div class="painting">
+      <svg class="sheet" viewBox="0 0 400 360" aria-hidden="true">
+        <defs>
+          <filter id="brush" x="-6%" y="-6%" width="112%" height="112%">
+            <feTurbulence type="fractalNoise" baseFrequency="0.022" numOctaves="2" seed="11" result="wobble"/>
+            <feDisplacementMap in="SourceGraphic" in2="wobble" scale="16" xChannelSelector="R" yChannelSelector="G" result="wet"/>
+            <feTurbulence type="fractalNoise" baseFrequency="0.02 0.4" numOctaves="1" seed="4" result="bristle"/>
+            <feColorMatrix in="bristle" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -9 7.6" result="dry"/>
+            <feComposite in="wet" in2="dry" operator="in"/>
+          </filter>
+        </defs>
+        <g filter="url(#brush)" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M-10 270 C 60 246, 140 276, 210 256 C 280 238, 340 268, 410 250" stroke="#cfe5bd" stroke-width="64"/>
+          <path d="M-10 330 C 80 316, 200 342, 410 320" stroke="#cfe5bd" stroke-width="76"/>
+          <path d="M-10 196 C 50 150, 110 172, 170 160 C 230 148, 300 118, 410 158" stroke="#9cc98f" stroke-width="13"/>
+          <circle cx="78" cy="66" r="25" fill="#f6a81c"/><path d="M78 22 L78 8" stroke="#f6a81c" stroke-width="8"/><path d="M110 36 L121 25" stroke="#f6a81c" stroke-width="8"/><path d="M124 66 L139 66" stroke="#f6a81c" stroke-width="8"/><path d="M110 96 L120 107" stroke="#f6a81c" stroke-width="8"/><path d="M46 36 L36 26" stroke="#f6a81c" stroke-width="8"/><path d="M32 68 L18 70" stroke="#f6a81c" stroke-width="8"/><path d="M48 98 L39 109" stroke="#f6a81c" stroke-width="8"/>
+          <path d="M320 150 C 282 198, 346 234, 302 282 C 282 306, 302 338, 288 372" stroke="#86c6d4" stroke-width="30"/>
+          <path d="M300 190 q8 -7 16 0 M308 250 q8 -7 16 0 M286 318 q8 -7 16 0" stroke="#dff1f4" stroke-width="5"/>
+          <path d="M72 262 L75 202 L155 198 L159 260 Z" fill="#fff6dc" stroke="#8a5a2b" stroke-width="9"/>
+          <path d="M56 206 L113 150 L176 202 Z" fill="#1c5a38" stroke="#1c5a38" stroke-width="10"/>
+          <path d="M114 258 L115 232" stroke="#8a5a2b" stroke-width="15"/>
+          <path d="M92 222 l1 6 M138 221 l1 6" stroke="#f6a81c" stroke-width="11"/>
+          <path d="M236 256 L238 216" stroke="#8a5a2b" stroke-width="9"/>
+          <circle cx="238" cy="196" r="24" fill="#2f8f4a"/><circle cx="256" cy="210" r="14" fill="#2f8f4a"/>
+          <path d="M40 288 L42 322" stroke="#8a5a2b" stroke-width="7"/><path d="M63 292 L62 320" stroke="#8a5a2b" stroke-width="7"/><path d="M86 286 L88 324" stroke="#8a5a2b" stroke-width="7"/><path d="M109 291 L108 321" stroke="#8a5a2b" stroke-width="7"/><path d="M133 287 L134 323" stroke="#8a5a2b" stroke-width="7"/><path d="M156 292 L157 320" stroke="#8a5a2b" stroke-width="7"/><path d="M180 288 L179 324" stroke="#8a5a2b" stroke-width="7"/><path d="M203 291 L204 321" stroke="#8a5a2b" stroke-width="7"/><path d="M30 305 C 80 298, 150 311, 214 302" stroke="#8a5a2b" stroke-width="6" fill="none"/>
+          <path d="M8 352 l16 -6" stroke="#cfae84" stroke-width="9"/><path d="M44 340 l18 -3" stroke="#cfae84" stroke-width="9"/><path d="M84 335 l18 2" stroke="#cfae84" stroke-width="9"/><path d="M124 340 l18 4" stroke="#cfae84" stroke-width="9"/><path d="M164 349 l16 5" stroke="#cfae84" stroke-width="9"/>
+          <path d="M360 176 V218 M339 197 H381" stroke="#2f8f4a" stroke-width="13"/>
+          <g fill="#2f8f4a" stroke="none">
+            <use href="#paw" x="286" y="26" width="44" height="48" transform="rotate(18 308 50)"/>
+            <use href="#paw" x="338" y="62" width="44" height="48" transform="rotate(26 360 86)"/>
+            <circle cx="262" cy="64" r="4"/><circle cx="274" cy="92" r="2.5"/>
           </g>
-        </svg>
-        <svg class="painter" viewBox="-20 0 220 200" aria-hidden="true">
-          <path d="M108 186 C 100 158, 118 128, 146 118 C 176 108, 200 124, 200 156 C 200 178, 197 190, 186 195 L 120 195 C 113 195, 110 192, 108 186 Z" fill="#e2a84b"/>
-          <path d="M114 190 C 112 170, 124 150, 142 140 C 136 160, 140 178, 148 190 Z" fill="#f1cc88"/>
-          <ellipse cx="128" cy="191" rx="15" ry="7.5" fill="#f1cc88"/><ellipse cx="162" cy="192" rx="15" ry="7.5" fill="#f1cc88"/>
-          <path d="M42 104 C 54 124, 86 126, 102 106 Z" fill="#c4852f"/>
-          <path d="M86 110 L14 124" stroke="#8a5a2b" stroke-width="8" stroke-linecap="round"/>
-          <path d="M15 123.8 L4 126" stroke="#aab2ae" stroke-width="10"/>
-          <path d="M3 126.2 L-8 128.4" stroke="#86c6d4" stroke-width="12" stroke-linecap="round"/>
-          <ellipse cx="120" cy="78" rx="48" ry="46" fill="#e2a84b"/>
-          <path d="M92 50 C 66 56, 36 70, 26 86 C 20 98, 30 108, 46 110 C 66 113, 90 110, 106 98 Z" fill="#f1cc88"/>
-          <ellipse cx="29" cy="86" rx="10" ry="8" fill="#3a2a22"/>
-          <path d="M38 108 C 56 113, 80 111, 98 101" fill="none" stroke="#3a2a22" stroke-width="2.5" stroke-linecap="round"/>
-          <circle cx="98" cy="64" r="5.5" fill="#3a2a22"/><circle cx="96.4" cy="62.4" r="1.7" fill="#fff"/>
-          <path d="M88 51 q10 -7 20 -2" fill="none" stroke="#c4852f" stroke-width="3" stroke-linecap="round"/>
-          <path d="M126 38 C 152 30, 176 50, 178 86 C 180 114, 168 138, 152 140 C 140 124, 134 98, 126 72 Z" fill="#c4852f"/>
-          <circle cx="62" cy="80" r="4.5" fill="#2f8f4a"/><circle cx="160" cy="102" r="4" fill="#86c6d4"/><circle cx="130" cy="42" r="3" fill="#f6a81c"/>
-        </svg>
-        <p class="vetted"><svg aria-hidden="true"><use href="#paw"/></svg>Vetted by Whiskey</p>
-      </div>
+          <!-- drips, splatters and a smear: the paint was wet and the painter was not careful -->
+          <path d="M96 84 v30 M60 80 v15" stroke="#f6a81c" stroke-width="5"/><circle cx="96" cy="117" r="4.5" fill="#f6a81c"/>
+          <path d="M150 204 v24 M84 206 v13" stroke="#1c5a38" stroke-width="5"/><circle cx="150" cy="230" r="4" fill="#1c5a38"/>
+          <path d="M372 216 v22" stroke="#2f8f4a" stroke-width="5"/><circle cx="372" cy="240" r="4" fill="#2f8f4a"/>
+          <path d="M236 338 C 250 331, 268 335, 288 346" stroke="#86c6d4" stroke-width="14"/>
+          <path d="M196 96 c14 -9 30 -6 40 3" stroke="#f6a81c" stroke-width="12" opacity=".8"/>
+          <g stroke="none">
+            <circle cx="176" cy="58" r="5" fill="#f6a81c"/><circle cx="190" cy="44" r="2.5" fill="#f6a81c"/><circle cx="166" cy="40" r="2" fill="#f6a81c"/>
+            <circle cx="250" cy="128" r="4" fill="#2f8f4a"/><circle cx="238" cy="112" r="2" fill="#2f8f4a"/><circle cx="388" cy="132" r="3" fill="#2f8f4a"/>
+            <circle cx="344" cy="268" r="4" fill="#86c6d4"/><circle cx="356" cy="284" r="2" fill="#86c6d4"/><circle cx="268" cy="330" r="3" fill="#86c6d4"/>
+            <circle cx="40" cy="262" r="3.5" fill="#8a5a2b"/><circle cx="222" cy="330" r="2.5" fill="#8a5a2b"/>
+          </g>
+          <g fill="#8a5a2b" stroke="none" opacity=".85">
+            <use href="#paw" x="216" y="268" width="30" height="33" transform="rotate(-24 231 284)"/>
+          </g>
+          <circle cx="150" cy="116" r="3.5" fill="#f6a81c"/><circle cx="208" cy="300" r="3" fill="#86c6d4"/><circle cx="24" cy="236" r="3" fill="#8a5a2b"/>
+        </g>
+      </svg>
+      <svg class="track track-1" aria-hidden="true"><use href="#paw"/></svg>
+      <svg class="track track-2" aria-hidden="true"><use href="#paw"/></svg>
+      <svg class="track track-3" aria-hidden="true"><use href="#paw"/></svg>
+      <svg class="track track-4" aria-hidden="true"><use href="#paw"/></svg>
+      <img class="painter" src="img/handled-painter-dog.webp" width="524" height="990" loading="lazy" alt="A golden retriever with a paintbrush in its mouth and paint on its paws, sitting in front of a picture painted in thick, wobbly strokes: a sun, a house with a fence, a tree, a stream and paw prints.">
+      <p class="vetted"><svg aria-hidden="true"><use href="#paw"/></svg>Paw-approved</p>
+    </div>
+    <div class="handled-list">
       <ol class="checks">
-        <li><span class="check-paw" aria-hidden="true"><svg><use href="#paw"/></svg><b>1</b></span><div><h3>Paw-approved stays.</h3><p>We visit every stay and check the fences, the floors and how the staff are with dogs.</p></div></li>
-        <li><span class="check-paw" aria-hidden="true"><svg><use href="#paw"/></svg><b>2</b></span><div><h3>Vetted activities.</h3><p>We check the water and the banks before we suggest a swim.</p></div></li>
-        <li><span class="check-paw" aria-hidden="true"><svg><use href="#paw"/></svg><b>3</b></span><div><h3>A vet on call, 24x7.</h3><p>One you can reach day or night, and we know the way there.</p></div></li>
-        <li><span class="check-paw" aria-hidden="true"><svg><use href="#paw"/></svg><b>4</b></span><div><h3>Hassle-free logistics.</h3><p>We plan the drive, with breaks for water and a walk, away from highway traffic.</p></div></li>
+        <li><span class="check-paw" aria-hidden="true"><svg><use href="#paw"/></svg><b>1</b></span><div><h3>Verified stays.</h3><p>We visit each stay to check the fences, the floors and the staff. Your dog sleeps in your room.</p></div></li>
+        <li><span class="check-paw" aria-hidden="true"><svg><use href="#paw"/></svg><b>2</b></span><div><h3>Food, all arranged.</h3><p>Your meals are arranged for the whole trip, so you never have to search for a place to eat.</p></div></li>
+        <li><span class="check-paw" aria-hidden="true"><svg><use href="#paw"/></svg><b>3</b></span><div><h3>Vetted activities.</h3><p>Each day's outing is shaped around your dog. We check the water before we suggest a swim.</p></div></li>
+        <li><span class="check-paw" aria-hidden="true"><svg><use href="#paw"/></svg><b>4</b></span><div><h3>A vet on call, 24x7.</h3><p>One you can reach day or night. If your dog needs to be seen, your driver takes you there.</p></div></li>
+        <li><span class="check-paw" aria-hidden="true"><svg><use href="#paw"/></svg><b>5</b></span><div><h3>Hassle-free logistics.</h3><p>A car and driver just for your family. Your dog rides with you, never in a crate or the boot.</p></div></li>
       </ol>
     </div>
   </div>
+  <svg class="band-edge band-edge-bottom" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true"><path d="M0 34 C 260 74, 560 10, 860 38 C 1100 60, 1300 22, 1440 46 V80 H0 Z"/></svg>
 </section>
 
 
@@ -285,11 +240,11 @@
       <!-- Coorg and From Hyderabad are from the live site. Chikmagalur, Sakleshpur and Wayanad were picked by Claude at the owners' instruction (2026-11-19): the owners confirm them before this goes live. Their lines describe the place only. -->
       <ul class="trip-list">
         <li class="is-open">
-          <a class="trip-row" href="#coorg">
+          <a class="trip-row" href="../coorg.html">
             <div class="trip-top"><h3>Coorg, the slow way</h3><p class="trip-status is-open">Booking now</p></div>
             <p class="trip-line">Coffee estates, a stream to swim in and a ridge-top view, paced for your dog.</p>
             <p class="trip-meta">Three nights, from Bengaluru</p>
-            <p class="trip-go">The trip in short <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v13M6 12.5l6 6 6-6"/></svg></p>
+            <p class="trip-go">See the full plan <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M12.5 6l6 6-6 6"/></svg></p>
           </a>
         </li>
         <li>
@@ -321,56 +276,18 @@
     <p class="more">Want a trip that isn't listed? <a class="link" href="#form">Tell us where</a></p>
 
   </div>
-
-  <!-- The one trip that is open: a dark band with the same hill edges as the green one. -->
-  <div class="coorg" id="coorg">
-    <svg class="band-edge band-edge-top" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true"><path d="M0 30 C 240 70, 520 6, 800 34 C 1040 58, 1260 20, 1440 46 V80 H0 Z"/></svg>
-    <div class="wrap coorg-grid">
-      <div class="coorg-head">
-        <h3 class="panel-title">The Coorg trip, in short.</h3>
-        <p class="trip-lead">Every trip is private: just your family and your dog.</p>
-        <div class="cta-row">
-          <a class="btn btn-light" href="#form">Tell us about your dog</a>
-          <a class="link link-light" href="../coorg.html">See the full Coorg plan</a>
-        </div>
-      </div>
-      <dl class="care-list coorg-facts">
-        <div>
-          <dt><svg aria-hidden="true"><use href="#paw"/></svg>The price</dt>
-          <dd><b>From <span class="todo" title="Owner input: the from price">₹ price</span></b> for 2 adults and 1 dog. Children are welcome; the price depends on how many of you travel.</dd>
-        </div>
-        <div>
-          <dt><svg aria-hidden="true"><use href="#paw"/></svg>Included</dt>
-          <dd>The car, the driver, the stay and your meals.</dd>
-        </div>
-        <div>
-          <dt><svg aria-hidden="true"><use href="#paw"/></svg>The stay</dt>
-          <dd>You'll stay at <span class="todo" title="Owner input: stay name">stay name</span>, a coffee-estate homestay, or <span class="todo" title="Owner input: stay name">stay name</span>, a riverside cottage, depending on your dates.</dd>
-        </div>
-        <div>
-          <dt><svg aria-hidden="true"><use href="#paw"/></svg>The drive</dt>
-          <dd>About 5–6 hours each way, with breaks.</dd>
-        </div>
-        <div>
-          <dt><svg aria-hidden="true"><use href="#paw"/></svg>The weather</dt>
-          <dd>Coorg is cool and misty from October to March.</dd>
-        </div>
-      </dl>
-    </div>
-    <svg class="band-edge band-edge-bottom" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true"><path d="M0 40 C 280 8, 600 66, 900 36 C 1120 14, 1300 48, 1440 26 V80 H0 Z"/></svg>
-  </div>
 </section>
 
 
 <!-- 6. WHO WE ARE, AND WHISKEY'S CHANNEL -->
 <section class="whiskey" id="whiskey" aria-labelledby="whiskey-title">
+  <svg class="band-edge band-edge-top" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true"><path d="M0 30 C 240 70, 520 6, 800 34 C 1040 58, 1260 20, 1440 46 V80 H0 Z"/></svg>
   <div class="wrap whiskey-grid">
     <div>
       <!-- PHOTO SLOT: a real photo of Whiskey with the owners. Real only. -->
       <h2 id="whiskey-title">Meet Whiskey.</h2>
       <p class="lede">Our golden retriever, and the reason Trails Unseen exists.</p>
       <p class="whiskey-why">We kept saying no to trips because he couldn't come. So we built the trips we wanted to take with him.</p>
-      <!-- No guest has travelled yet, so there are no guest stories. They go here after the first trips. -->
       <div class="follow">
         <p>Follow Whiskey</p>
         <ul>
@@ -386,6 +303,37 @@
         <span class="video-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z"/></svg>Watch his episode</span>
       </span>
     </a>
+  </div>
+  <svg class="band-edge band-edge-bottom" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true"><path d="M0 40 C 280 8, 600 66, 900 36 C 1120 14, 1300 48, 1440 26 V80 H0 Z"/></svg>
+</section>
+
+
+<!-- 7. WHAT FAMILIES SAY.
+     SAMPLES ONLY. No guest has travelled yet, so there are no real quotes. These three hold the layout and are
+     marked as samples on the page itself. Each is replaced by a real family's words, name and photo (with their
+     permission) after the first trips. Never remove the sample marks while the quotes are invented.
+     The pictures are crops of generated drafts, not anyone's dog. -->
+<section class="said" id="said" aria-labelledby="said-title">
+  <div class="wrap">
+    <h2 id="said-title">What families say.</h2>
+    <p class="lede"><span class="todo">Sample quotes for now. Real families' words go here after the first trips.</span></p>
+    <ul class="quotes">
+      <li><figure class="quote">
+        <p class="sample-tag">Sample quote</p>
+        <blockquote><p>We didn't make one phone call. The stay, the meals and the car were all arranged, and our dog was welcome at every stop.</p></blockquote>
+        <figcaption><img src="img/said-1.jpg" width="240" height="240" loading="lazy" alt="Placeholder picture: a golden retriever on a path between coffee plants"><span class="quote-who"><b class="todo">Name</b><span class="todo">Dog's name, city</span></span></figcaption>
+      </figure></li>
+      <li><figure class="quote">
+        <p class="sample-tag">Sample quote</p>
+        <blockquote><p>She swam every morning and slept all afternoon. We haven't seen her this happy on a trip before.</p></blockquote>
+        <figcaption><img src="img/said-2.jpg" width="240" height="240" loading="lazy" alt="Placeholder picture: a golden retriever swimming in a stream"><span class="quote-who"><b class="todo">Name</b><span class="todo">Dog's name, city</span></span></figcaption>
+      </figure></li>
+      <li><figure class="quote">
+        <p class="sample-tag">Sample quote</p>
+        <blockquote><p>Knowing there was a vet we could call at any hour let us relax for once. We'd go again tomorrow.</p></blockquote>
+        <figcaption><img src="img/said-3.jpg" width="240" height="240" loading="lazy" alt="Placeholder picture: a golden retriever asleep on a verandah floor"><span class="quote-who"><b class="todo">Name</b><span class="todo">Dog's name, city</span></span></figcaption>
+      </figure></li>
+    </ul>
   </div>
 </section>
 
@@ -431,7 +379,7 @@
         <label for="f-site">Leave this empty</label>
         <input id="f-site" name="_honey" type="text" tabindex="-1" autocomplete="off">
       </div>
-      <button class="btn btn-primary btn-send" type="submit">Send</button>
+      <button class="btn btn-primary btn-send" type="submit"><svg class="btn-paw" aria-hidden="true"><use href="#paw"/></svg>Get your quote</button>
       <p class="result" id="result" role="status" aria-live="polite"></p>
     </form>
   </div>
@@ -459,6 +407,6 @@
   </div>
 </footer>
 
-<script src="site.js?v=13"></script>
+<script src="site.js?v=14"></script>
 </body>
 </html>

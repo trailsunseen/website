@@ -173,6 +173,7 @@ var CONTACT_EMAIL = "hello@trailsunseen.com";
       entries.forEach(function (en) {
         if (!en.isIntersecting) return;
         for (var id in links) links[id].classList.toggle('is-here', id === en.target.id);
+        rail.classList.toggle('on-dark', en.target.id === 'whiskey'); // Whiskey's band is dark: the list turns light over it
       });
     }, { rootMargin: '-45% 0px -50% 0px' });
     for (var id in links) { var sec = document.getElementById(id); if (sec) here.observe(sec); }
