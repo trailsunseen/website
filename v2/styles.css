@@ -183,10 +183,13 @@ html:not(.js) .beats li { min-height: 0; padding: var(--s5) 0; }
 /* ---------- 4. we go there before you do ---------- */
 .gofirst-grid { display: grid; gap: var(--s6); margin-top: var(--s6); }
 /* the painting: a sheet of white paper, slightly crooked, on a pale green block */
-.painting { position: relative; width: min(100% - 28px, 460px); margin-inline: auto; }
+.painting { position: relative; width: min(100% - 28px, 460px); margin: 0 auto var(--s6); }
 .painting::before { content: ""; position: absolute; inset: 14px -14px -14px 14px; border-radius: var(--radius); background: var(--meadow-deep); transform: rotate(1.5deg); }
-.painting svg { position: relative; display: block; width: 100%; height: auto; background: #fff; border: 1px solid var(--line); border-radius: 6px; transform: rotate(-1.5deg); }
-.gofirst-whiskey { margin-top: var(--s5); font: 700 clamp(18px, 2.4vw, 22px)/1.3 var(--display); letter-spacing: -0.02em; color: var(--ink); max-width: 20em; }
+.painting .sheet { position: relative; display: block; width: 100%; height: auto; background: #fff; border: 1px solid var(--line); border-radius: 6px; transform: rotate(-1.5deg); }
+/* the painter leans in over the bottom corner of the sheet, brush on the wet paint */
+.painter { position: absolute; right: -7.7%; bottom: -12.5%; width: 52%; height: auto; }
+.vetted { position: absolute; left: -12px; bottom: -20px; display: inline-flex; align-items: center; gap: var(--s2); padding: 10px var(--s4) 10px var(--s3); border-radius: 24px; background: var(--forest); color: #fff; font: 700 16px/1 var(--display); letter-spacing: -0.01em; transform: rotate(-4deg); }
+.vetted svg { width: 18px; height: 20px; fill: #fff; }
 .checks { display: grid; gap: var(--s6); }
 .checks li { display: grid; grid-template-columns: 56px minmax(0, 1fr); gap: var(--s5); align-items: start; }
 .check-paw { position: relative; display: block; width: 56px; height: 62px; }
@@ -287,7 +290,7 @@ main > .trips { padding-bottom: 0; }
   .handled-grid { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: var(--s8); align-items: start; }
   .handled-photo { aspect-ratio: 4 / 5; position: sticky; top: var(--s6); }
   .gofirst-grid { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: var(--s8); align-items: start; margin-top: var(--s7); }
-  .painting { width: calc(100% - 14px); margin: 0; position: sticky; top: var(--s7); }
+  .painting { width: calc(100% - 30px); margin: 0; position: sticky; top: var(--s7); }
   .trips-photo { aspect-ratio: 21 / 9; }
   .trips-grid { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: var(--s8); align-items: start; }
   .map { position: sticky; top: var(--s6); }
