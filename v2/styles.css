@@ -46,7 +46,7 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-img, svg { display: block; max-width: 100%; }
+img, svg, video { display: block; max-width: 100%; }
 p, dd, li { text-wrap: pretty; }
 h1, h2, h3 { font-family: var(--display); color: var(--ink); letter-spacing: -0.02em; margin: 0; text-wrap: balance; }
 p { margin: 0; }
@@ -102,7 +102,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 /* The photo's pale sky fades up into the page, so the headline sits in the sky. */
 .hero-text { position: relative; z-index: 1; }
 .hero-photo { margin: calc(var(--s6) * -1) 0 0; }
-.hero-photo img {
+.hero-photo :is(img, video) {
   width: 100%; height: clamp(320px, 62vw, 760px);
   object-fit: cover; object-position: 68% 100%;
   -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 34%);
@@ -112,7 +112,8 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 /* On a phone the picture is cropped closer: the dog is larger and there is less empty sky above him. */
 @media (max-width: 599px) {
   .hero-photo { position: relative; height: clamp(290px, 80vw, 440px); overflow: hidden; }
-  .hero-photo img { position: absolute; left: 0; bottom: 0; height: 135%; }
+  .hero-photo :is(img, video) { position: absolute; left: 0; bottom: 0; height: 135%; }
+  .hero-photo video { object-position: 88% 100%; } /* the pair sits right of centre in the ridge clip */
 }
 
 /* ---------- the paw: a mark on the map route, the list and the side list ---------- */
@@ -374,12 +375,14 @@ input[aria-invalid="true"] { border-color: #b91c1c; }
    the left side behind the words, which is thinned to a soft wash and never wiped to paper, and the grass coming back
    in below them (--words is where the words end). */
 @media (min-width: 900px) {
-  .hero { position: relative; padding: 0; min-height: 47vw; --words: 500px; }
+  /* --drop moves the picture down: its top is faded sky, so the gap above it never shows */
+  .hero { position: relative; padding: 0; --drop: clamp(32px, 3.5vw, 56px); min-height: calc(47vw + var(--drop) + clamp(30px, 6vw, 96px)); /* + the hills, so they sit on extra grass, not on the dog */ --words: 500px; }
   .hero-text { padding-top: var(--s7); padding-bottom: var(--s7); }
   .hero h1 { font-size: clamp(52px, 5.8vw, 84px); max-width: 7.6em; }
   .hero-sub { max-width: min(25em, 41vw); color: var(--ink); font-weight: 500; } /* the words sit on the picture here */
-  .hero-photo { position: absolute; inset: 0; margin: 0; overflow: hidden; }
-  .hero-photo img {
+  .hero-photo { position: absolute; inset: var(--drop) 0 0; margin: 0; overflow: hidden; }
+  .hero + .days { padding-top: calc(var(--s8) + 24px); }
+  .hero-photo :is(img, video) {
     width: 118%; max-width: none; height: 100%;
     object-position: 0 79%;
     -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 17%), linear-gradient(to right, rgba(0,0,0,.30) 0, rgba(0,0,0,.30) 24%, rgba(0,0,0,.52) 52%, #000 70%), linear-gradient(to bottom, transparent var(--words), #000 calc(var(--words) + 170px));
@@ -387,4 +390,6 @@ input[aria-invalid="true"] { border-color: #b91c1c; }
     -webkit-mask-composite: source-in, source-over;
             mask-composite: intersect, add;
   }
+  /* the ridge clip has the pair on the right: show its whole width and keep them clear of the hills edge */
+  .hero-photo video { width: 100%; object-position: 70% 100%; }
 }

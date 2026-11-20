@@ -22,7 +22,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=48">
+<link rel="stylesheet" href="styles.css?v=49">
 <script>document.documentElement.className = 'js';</script>
 </head>
 <body>
@@ -82,12 +82,16 @@
   </div>
 
   <!--
-    HERO IMAGE: a generated golden retriever (owners' pick, 2026-11-19: the field draft), rendered at high quality.
-    It is never captioned as Whiskey or as a real trip. Prompts are logged in brief/PROMPTS.md.
+    HERO VIDEO (DRAFT, 2026-11-20): generated with Kling 2.5 from img/moment-4-ridge.jpg, an 8.5 s seamless loop (take 2).
+    It is a stand-in until real footage of Whiskey replaces it, and is never captioned as Whiskey or as a real trip.
+    Prompt logged in brief/PROMPTS.md; the other takes are in img/drafts/hero-video/. The old still was img/hero-field.jpg.
+    The poster shows while it loads, and site.js stops it for anyone who asks for reduced motion.
   -->
   <figure class="hero-photo">
-    <img src="img/hero-field.jpg?v=2" width="1536" height="1024"
-         alt="A golden retriever running across an open field in the morning, with misty green hills behind">
+    <video class="hero-video" autoplay muted loop playsinline preload="auto" poster="img/hero-ridge-poster.jpg"
+           width="1280" height="850" aria-label="A golden retriever and its owner sitting on a grassy hilltop, seen from behind, as mist drifts over the hills">
+      <source src="img/hero-ridge.mp4" type="video/mp4">
+    </video>
   </figure>
   <!-- the picture ends in a line of hills, like the bands further down, never in a straight cut -->
   <svg class="band-edge band-edge-bottom hero-edge" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true"><path d="M0 56 C 80 64, 150 74, 215 56 C 275 34, 305 10, 385 12 C 455 14, 490 46, 565 52 C 640 58, 665 76, 725 70 C 775 62, 795 22, 855 20 C 925 20, 965 44, 1035 50 C 1105 58, 1125 74, 1185 70 C 1245 60, 1255 20, 1325 18 C 1375 18, 1405 34, 1440 42 V80 H0 Z"/></svg>
@@ -407,6 +411,6 @@
   </div>
 </footer>
 
-<script src="site.js?v=14"></script>
+<script src="site.js?v=15"></script>
 </body>
 </html>

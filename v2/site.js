@@ -179,3 +179,17 @@ var CONTACT_EMAIL = "hello@trailsunseen.com";
     for (var id in links) { var sec = document.getElementById(id); if (sec) here.observe(sec); }
   }
 })();
+
+// ---- The hero video ----
+// It plays silently on a loop. Anyone who has asked for reduced motion gets the still poster instead.
+(function () {
+  var v = document.querySelector('.hero-video');
+  if (!v || !window.matchMedia) return;
+  var mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+  function apply() {
+    if (mq.matches) { v.removeAttribute('autoplay'); v.pause(); v.currentTime = 0; }
+    else { var p = v.play(); if (p && p.catch) p.catch(function () {}); }
+  }
+  apply();
+  if (mq.addEventListener) mq.addEventListener('change', apply);
+})();
