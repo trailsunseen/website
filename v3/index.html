@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Trails Unseen: trips with your dog, fully planned</title>
+<meta name="description" content="Fully planned trips from Bengaluru for you and your dog. Checked stays, meals, car and driver, dog outings and a vet on call.">
+<meta name="robots" content="noindex">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Trails Unseen">
+<meta property="og:title" content="Trails Unseen: trips with your dog, fully planned">
+<meta property="og:description" content="Fully planned trips from Bengaluru for you and your dog. Checked stays, meals, car and driver, dog outings and a vet on call.">
+<meta property="og:image" content="https://trailsunseen.com/v3/img/og-field.jpg">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#15803d">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="brand" href="./"><img src="/favicon.svg" alt="">Trails&nbsp;<span>Unseen</span></a>
+  <nav class="nav" aria-label="Main">
+    <a href="./#where">Where we go</a><a href="/safety.html">Safety</a><a href="/story.html">Our story</a><a href="./#faq">FAQ</a>
+    <a class="btn" style="min-height:44px;padding:0 18px;font-size:15px" href="./#plan">Plan my trip</a>
+  </nav>
+  <details class="menu"><summary aria-label="Open menu"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></summary>
+    <nav aria-label="Menu"><a href="./#where">Where we go</a><a href="coorg.html">Coorg trip</a><a href="/safety.html">Your dog's safety</a><a href="/story.html">Our story</a><a href="./#faq">FAQ</a><a href="./#plan">Plan my trip</a></nav>
+  </details>
+</div></header>
+
+<main>
+<section class="hero"><div class="wrap">
+  <img class="hero-photo" src="img/hero-field.jpg" alt="A happy golden retriever running across a hilltop meadow at sunrise" width="1400" height="933">
+  <p class="eyebrow">Dog-friendly trips from Bengaluru</p>
+  <h1>Trips with your dog, <em>fully planned.</em></h1>
+  <p class="lede">Hidden hills and coffee country, a short drive away. We arrange the stay, meals, car and a vet on call. You just pack the leash.</p>
+  <form class="planner " id="plan" novalidate aria-label="Plan my trip">
+  <div class="field fixed"><svg class="ic pin" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg><span class="lbl"><small>Destination</small><span class="val">Coorg</span></span><span class="pill">Booking now</span>
+    <input type="hidden" name="trip" value="Coorg, the slow way (3 nights)"></div>
+  <div class="dates">
+    <label class="field"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg><span class="lbl"><small>Start date</small><input type="date" name="start" required></span></label>
+    <label class="field"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg><span class="lbl"><small>End date</small><input type="date" name="end" required></span></label>
+  </div>
+  <details class="who"><summary><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M3.5 19c0-3 2.5-5 5.5-5s5.5 2 5.5 5"/><circle cx="17.5" cy="10" r="2"/><path d="M15.5 19c.3-2 1.2-3.5 3-3.5 1.5 0 2.5 1 2.5 3.5"/></svg><span class="lbl" style="display:flex;flex-direction:column"><small style="font-size:12px;font-weight:600;color:var(--slate-500)">Travellers</small><span class="who-summary" style="font-weight:700">2 adults · 1 dog</span></span><svg class="ic chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary>
+    <div class="who-panel">
+      <div class="counter"><span>Adults<small>13 and over</small></span><span class="stepper"><button type="button" class="minus" data-k="adults" data-d="-1" aria-label="Fewer adults">−</button><output data-k="adults">2</output><button type="button" class="plus" data-k="adults" data-d="1" aria-label="More adults">+</button></span></div>
+      <div class="counter"><span>Children<small>2 to 12</small></span><span class="stepper"><button type="button" class="minus" data-k="children" data-d="-1" aria-label="Fewer children">−</button><output data-k="children">0</output><button type="button" class="plus" data-k="children" data-d="1" aria-label="More children">+</button></span></div>
+      <div class="counter" style="border:0"><span>Dogs<small>Any size</small></span><span class="stepper"><button type="button" class="minus" data-k="dogs" data-d="-1" aria-label="Fewer dogs">−</button><output data-k="dogs">1</output><button type="button" class="plus" data-k="dogs" data-d="1" aria-label="More dogs">+</button></span></div>
+    </div>
+  </details>
+  <p class="error" role="alert"></p>
+  <button type="submit" class="btn btn-block"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20l1.5-4A8 8 0 1 1 9 19.5z"/></svg>Plan my trip</button>
+  <p class="wa-note">Opens WhatsApp with your details. Free plan within a day.</p>
+</form>
+</div></section>
+
+<section class="sec sec-white includes"><div class="wrap">
+  <h2>Every trip includes</h2>
+  <div class="icons">
+    <div><span class="tile"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5V21h-6v-6H9v6H3z"/></svg></span>Checked stays</div>
+    <div><span class="tile"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3v8M5 3v5a2 2 0 0 0 4 0V3M7 11v10M17 3c-2 2-2 6 0 8v10"/></svg></span>All meals</div>
+    <div><span class="tile"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 16v-5l2-5h10l2 5v5"/><path d="M3 16h18v3H3z"/><path d="M7 19v2M17 19v2"/></svg></span>Car and driver</div>
+    <div><span class="tile"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="7" cy="9" r="1.8"/><circle cx="12" cy="6.5" r="1.8"/><circle cx="17" cy="9" r="1.8"/><path d="M8 17c0-3 2-5 4-5s4 2 4 5c0 1.5-1.5 2.5-4 2.5S8 18.5 8 17z"/></svg></span>Dog outings</div>
+    <div><span class="tile amber"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z"/><path d="M12 9v6M9 12h6"/></svg></span>Vet on call</div>
+  </div>
+  <a class="center-link" href="/safety.html">How we keep your dog safe →</a>
+</div></section>
+
+<section class="sec" id="where"><div class="wrap">
+  <h2>Where we go</h2>
+  <div class="trips">
+    <a class="trip live" href="coorg.html"><img src="img/moment-1-walk.jpg" alt="" loading="lazy"><span class="trip-body"><span class="pill">Booking now</span><strong>Coorg</strong><span class="tag">Coffee estates and stream swims</span><span class="go">3 nights · from Bengaluru →</span></span></a>
+    <a class="trip soon" data-msg="Hi Trails Unseen! Please add me to the waitlist for Chikmagalur." data-subject="Waitlist: Chikmagalur"><img src="img/trips-ridge.jpg" alt="" loading="lazy"><span class="trip-body"><span class="pill soon">Coming soon</span><strong>Chikmagalur</strong><span class="tag">Open grassland trails, room to run</span><span class="go">Join the waitlist →</span></span></a>
+    <a class="trip soon" data-msg="Hi Trails Unseen! Please add me to the waitlist for Sakleshpur." data-subject="Waitlist: Sakleshpur"><img src="img/handled-coffee.jpg" alt="" loading="lazy"><span class="trip-body"><span class="pill soon">Coming soon</span><strong>Sakleshpur</strong><span class="tag">Quiet estates, cool weather</span><span class="go">Join the waitlist →</span></span></a>
+    <a class="trip soon" data-msg="Hi Trails Unseen! Please add me to the waitlist for Wayanad." data-subject="Waitlist: Wayanad"><img src="img/moment-2-swim.jpg" alt="" loading="lazy"><span class="trip-body"><span class="pill soon">Coming soon</span><strong>Wayanad</strong><span class="tag">Forest walks and streams</span><span class="go">Join the waitlist →</span></span></a>
+    <a class="trip soon" data-msg="Hi Trails Unseen! Please add me to the waitlist for Near Hyderabad." data-subject="Waitlist: Near Hyderabad"><img src="img/moment-3-verandah.jpg" alt="" loading="lazy"><span class="trip-body"><span class="pill soon">Coming soon</span><strong>Near Hyderabad</strong><span class="tag">Lakeside strolls, boulder trails</span><span class="go">Join the waitlist →</span></span></a>
+    <a class="trip-else" data-msg="Hi Trails Unseen! I'd love a trip with my dog to: " data-subject="Trip idea"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" style="color:var(--green-700)"><path d="M12 5v14M5 12h14"/></svg><span><strong style="display:block">Somewhere else in mind?</strong><span style="font-size:13px">Tell us where</span></span></a>
+  </div>
+</div></section>
+
+<section class="sec sec-white"><div class="wrap">
+  <h2>How it works</h2>
+  <ol class="steps">
+    <li><b>1</b><span><strong>Pick your dates and who's coming</strong><span>Then tap Plan my trip. It opens WhatsApp with everything filled in.</span></span></li>
+    <li><b>2</b><span><strong>Get your plan and price within a day</strong><span>We call to learn about your dog, then send the plan on WhatsApp.</span></span></li>
+    <li><b>3</b><span><strong>We pick you up at your door</strong><span>Everything else is handled until we drop you home.</span></span></li>
+  </ol>
+</div></section>
+
+<section class="sec"><div class="wrap narrow">
+  <div class="cta-band">
+    <h2>Ready to plan your trip?</h2>
+    <p>Pick your dates and who's coming. We'll take it from there on WhatsApp.</p>
+    <a class="btn btn-block" href="#plan">Plan my trip</a>
+  </div>
+</div></section>
+
+<section class="sec faq" id="faq"><div class="wrap narrow">
+  <h2>Questions people ask</h2>
+  <details><summary>How much does a trip cost?<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary><p>It depends on your dates, how many of you are coming and the stay. You get an exact price with your free plan, and there's nothing to pay until you're sure.</p></details>
+  <details><summary>Is my dog too big, too old or too energetic?<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary><p>Tell us about them on the call. We choose stays and outings to suit your dog, whatever their size, age or energy.</p></details>
+  <details><summary>Can we bring our kids too?<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary><p>Yes. Add children under Travellers and we'll plan the days for them as well.</p></details>
+  <details><summary>What isn't included?<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary><p>Your dog's own food and treats (bring what they're used to), and anything not listed on the trip page.</p></details>
+  <details><summary>What if my dog falls ill on the trip?<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary><p>We have a vet we know near each stop, and we change the plan straight away. Your dog comes first, every time.</p></details>
+</div></section>
+</main>
+<footer class="foot"><div class="wrap">
+  <b>Trails Unseen</b>
+  <span>Fully planned trips to the India most people never see. From Bengaluru.</span>
+  <nav aria-label="Footer"><a href="./#where">Where we go</a><a href="/safety.html">Safety</a><a href="/story.html">Our story</a><a href="./#faq">FAQ</a><a href="/cancellation.html">Cancellation</a><a href="/terms.html">Terms</a><a href="/privacy.html">Privacy</a></nav>
+  <span><a href="mailto:hello@trailsunseen.com">hello@trailsunseen.com</a> · <a href="https://www.instagram.com/trailsunseenindia/">Instagram @trailsunseenindia</a></span>
+  <span>© 2026 Trails Unseen</span>
+</div></footer>
+<script src="site.js"></script>
+</body>
+</html>
