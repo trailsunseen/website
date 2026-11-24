@@ -185,3 +185,10 @@ p{margin:0}
   .planner-wide .btn{flex:0 0 auto}
   .planner-wide .error,.planner-wide .wa-note{flex-basis:100%}
 }
+
+/* fixes after phone check */
+.hero-photo{height:200px}
+.center-link{padding:14px 0}
+.field input[type=date]{font-size:15px;min-width:0}
+.field input[type=date]::-webkit-date-and-time-value{text-align:left}
+@media (min-width:900px){.hero-photo{height:560px}}
