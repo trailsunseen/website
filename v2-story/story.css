@@ -1,0 +1,91 @@
+/* Full-screen photo story (preview). Loaded after styles.css and overrides its .story/.stage rules.
+   The section is N screens tall; the stage sticks for that distance and story.js swaps picture + words together. */
+
+.story.story-full {
+  position: relative;
+  display: block;
+  height: calc(var(--n, 4) * 100svh);
+  width: 100vw;
+  margin: var(--s6) 0 0 calc(50% - 50vw);
+}
+.story-full .stage {
+  position: sticky; top: 0; z-index: 1;
+  height: 100svh; max-height: none;
+  margin: 0; border-radius: 0;
+  overflow: hidden; background: #0f2f24;
+}
+.story-full .stage img {
+  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+  opacity: 0; transform: scale(1);
+  transition: opacity .7s ease, transform 7s ease-out;
+}
+.story-full .stage img.is-on { opacity: 1; transform: scale(1.08); }
+.story-full .stage .i-walk { object-position: 40% 50%; }
+.story-full .stage .i-swim { object-position: 50% 50%; }
+.story-full .stage .i-slow { object-position: 100% 50%; transform-origin: 100% 60%; }
+.story-full .stage .i-view { object-position: 78% 50%; }
+
+/* soft shade so the words stay readable */
+.story-full .shade {
+  position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(8, 28, 20, .45) 0%, rgba(8, 28, 20, 0) 18%),
+    linear-gradient(180deg, rgba(8, 28, 20, 0) 42%, rgba(8, 28, 20, .55) 66%, rgba(8, 28, 20, .88) 100%);
+}
+
+/* story progress bars */
+.story-full .bars { position: absolute; z-index: 2; top: 18px; left: var(--gutter); right: var(--gutter); display: flex; gap: 6px; }
+.story-full .bars span { flex: 1; height: 3px; border-radius: 3px; background: rgba(255, 255, 255, .35); overflow: hidden; }
+.story-full .bars i { display: block; height: 100%; width: 0; background: #fff; }
+.story-full .story-label {
+  position: absolute; z-index: 2; top: 30px; left: var(--gutter); margin: 0;
+  font: 700 12px/1.4 var(--sans); letter-spacing: .1em; text-transform: uppercase; color: rgba(255, 255, 255, .92);
+}
+
+/* captions sit on the picture, bottom-left; only the current one shows */
+.story-full .captions { list-style: none; margin: 0; padding: 0; }
+.story-full .captions li {
+  position: absolute; z-index: 2; left: var(--gutter); right: var(--gutter); bottom: max(56px, calc(env(safe-area-inset-bottom) + 40px));
+  display: flex; flex-direction: column; gap: 10px;
+  opacity: 0; transform: translateY(18px);
+  transition: opacity .5s ease, transform .5s ease;
+}
+.story-full .captions li.is-on { opacity: 1; transform: none; }
+.story-full .cap-n { font: 700 13px/1.4 var(--sans); color: #fcd34d; }
+.story-full .captions h3 {
+  margin: 0; color: #fff; font-size: clamp(30px, 8.6vw, 64px); line-height: 1.03; font-weight: 800; letter-spacing: -0.03em;
+  text-shadow: 0 1px 18px rgba(0, 0, 0, .25);
+}
+.story-full .captions p { margin: 0; color: rgba(255, 255, 255, .92); font-size: clamp(17px, 2vw, 22px); line-height: 1.5; max-width: 26em; }
+
+@media (min-width: 900px) {
+  .story.story-full { display: block; margin-top: var(--s7); grid-template-columns: none; }
+  .story-full .stage { top: 0; height: 100svh; max-height: none; border-radius: 0; }
+  .story-full .shade {
+    background:
+      linear-gradient(180deg, rgba(8, 28, 20, .4) 0%, rgba(8, 28, 20, 0) 16%),
+      linear-gradient(90deg, rgba(8, 28, 20, .82) 0%, rgba(8, 28, 20, .45) 38%, rgba(8, 28, 20, 0) 62%);
+  }
+  .story-full .bars { top: 28px; left: 80px; right: 80px; gap: 8px; }
+  .story-full .bars span { height: 4px; }
+  .story-full .story-label { top: 44px; left: 80px; font-size: 13px; }
+  .story-full .captions li { left: 80px; right: auto; width: min(560px, 42vw); bottom: 96px; gap: 14px; }
+  .story-full .cap-n { font-size: 15px; }
+}
+
+/* Without the script: one tall picture per moment, words underneath, no pinning */
+html:not(.js) .story.story-full { height: auto; }
+html:not(.js) .story-full .stage { position: static; height: auto; background: none; }
+html:not(.js) .story-full .stage img { position: static; opacity: 1; transform: none; height: 70svh; }
+html:not(.js) .story-full .shade, html:not(.js) .story-full .bars, html:not(.js) .story-full .story-label { display: none; }
+html:not(.js) .story-full .captions li { position: static; opacity: 1; transform: none; padding: var(--s5) var(--gutter); }
+html:not(.js) .story-full .captions h3, html:not(.js) .story-full .captions p { color: var(--ink, #0f2f24); text-shadow: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .story-full .stage img, .story-full .captions li { transition: opacity .2s linear; }
+  .story-full .stage img.is-on { transform: none; }
+  .story-full .captions li { transform: none; }
+}
+
+/* 100vw story should never cause sideways scrolling (clip keeps position: sticky working) */
+body { overflow-x: clip; }

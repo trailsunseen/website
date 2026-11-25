@@ -1,0 +1,465 @@
+/* Trails Unseen — home page v2
+   Tokens first. Mobile first: every rule works at 375px, then widens. */
+
+:root {
+  /* colour: warm paper, forest ink, one accent (brand green). Amber appears only in the sun. */
+  --paper: #fffdf7;
+  --ink: #0f2f24;
+  --body: #3b4a42;
+  --muted: #5a6a61;
+  --line: #e3dfd0;
+  --action: #15803d;
+  --action-dark: #166534;
+  --forest: #0f2f24;
+  --on-forest: #f4f1e4;
+  --on-forest-muted: #b8c9bd;
+  --leaf: #86efac;
+  --todo: #b45309;
+  --meadow: #eef4e4;
+  --meadow-deep: #dcebd2;
+  --paw: #c3d1b8;
+
+  /* type */
+  --display: "Outfit", system-ui, sans-serif;
+  --sans: "Plus Jakarta Sans", system-ui, sans-serif;
+
+  /* spacing scale: 4 8 12 16 24 32 48 72 112 */
+  --s1: 4px; --s2: 8px; --s3: 12px; --s4: 16px; --s5: 24px;
+  --s6: 32px; --s7: 48px; --s8: 72px; --s9: 112px;
+
+  --radius: 14px;
+  --radius-panel: 28px;
+  --gutter: 20px;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+body {
+  margin: 0;
+  font-family: var(--sans);
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--body);
+  background: var(--paper);
+  -webkit-font-smoothing: antialiased;
+}
+
+img, svg, video { display: block; max-width: 100%; }
+p, dd, li { text-wrap: pretty; }
+h1, h2, h3 { font-family: var(--display); color: var(--ink); letter-spacing: -0.02em; margin: 0; text-wrap: balance; }
+p { margin: 0; }
+ol, ul { margin: 0; padding: 0; list-style: none; }
+
+h2 { font-size: clamp(28px, 6.4vw, 44px); line-height: 1.1; font-weight: 700; max-width: 18em; }
+.lede { font-size: clamp(18px, 2.2vw, 21px); line-height: 1.55; max-width: 34em; margin-top: var(--s4); }
+
+.wrap { max-width: 1120px; margin: 0 auto; padding: 0 var(--gutter); }
+section { padding: var(--s8) 0; }
+
+a { color: var(--action); }
+a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible {
+  outline: 3px solid var(--action);
+  outline-offset: 3px;
+}
+
+/* ---------- buttons and links ---------- */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: var(--s2);
+  min-height: 52px; padding: 0 var(--s5);
+  font: 700 16px/1 var(--sans);
+  border-radius: 999px; border: 2px solid transparent;
+  text-decoration: none; cursor: pointer;
+  transition: background-color .15s, border-color .15s, color .15s;
+}
+.btn-paw { width: 18px; height: 20px; fill: currentColor; flex: none; }
+.btn-primary { background: var(--action); color: #fff; }
+.btn-primary:hover { background: var(--action-dark); }
+.btn-quiet { color: var(--ink); border-color: var(--ink); background: transparent; }
+.btn-quiet:hover { background: var(--ink); color: var(--paper); }
+.btn-light { background: var(--paper); color: var(--ink); }
+.btn-light:hover { background: var(--leaf); }
+.btn-small { min-height: 44px; padding: 0 var(--s4); font-size: 14px; color: var(--ink); border-color: var(--ink); }
+.btn-small:hover { background: var(--ink); color: var(--paper); }
+
+.link { font-weight: 700; text-underline-offset: 4px; display: inline-flex; align-items: center; min-height: 44px; }
+.link-light { color: var(--leaf); }
+.cta-row { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s3) var(--s5); margin-top: var(--s6); }
+
+/* ---------- header ---------- */
+.top-row { display: flex; align-items: center; justify-content: space-between; min-height: 72px; }
+.logo { display: inline-flex; align-items: center; gap: var(--s3); min-height: 44px; font: 700 22px/1 var(--display); letter-spacing: -0.02em; color: var(--ink); text-decoration: none; }
+.logo svg { width: 40px; height: 40px; }
+.logo b { color: var(--action); font-weight: 700; }
+.top-cta { display: none; }
+@media (min-width: 620px) { .top-cta { display: inline-flex; } }
+
+/* ---------- 1. hero ---------- */
+.hero { position: relative; padding: var(--s6) 0 0; }
+.hero h1 { font-size: clamp(42px, 11.5vw, 84px); line-height: 1; font-weight: 800; letter-spacing: -0.03em; max-width: 10em; }
+.hero-sub { font-size: clamp(18px, 2.3vw, 22px); line-height: 1.5; max-width: 30em; margin-top: var(--s5); color: var(--body); }
+/* The photo's pale sky fades up into the page, so the headline sits in the sky. */
+.hero-text { position: relative; z-index: 1; }
+.hero-photo { margin: calc(var(--s6) * -1) 0 0; }
+.hero-photo :is(img, video) {
+  width: 100%; height: clamp(320px, 62vw, 760px);
+  object-fit: cover; object-position: 68% 100%;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 34%);
+          mask-image: linear-gradient(to bottom, transparent 0, #000 34%);
+}
+
+/* On a phone the picture is cropped closer: the dog is larger and there is less empty sky above him. */
+@media (max-width: 599px) {
+  .hero-photo { position: relative; height: clamp(290px, 80vw, 440px); overflow: hidden; }
+  .hero-photo :is(img, video) { position: absolute; left: 0; bottom: 0; height: 135%; }
+  .hero-photo video { object-position: 88% 100%; } /* the pair sits right of centre in the ridge clip */
+}
+
+/* ---------- the paw: a mark on the map route, the list and the side list ---------- */
+.sprite { position: absolute; }
+.paw { fill: var(--paw); }
+/* The map's prints appear one after another when the map is reached. site.js adds .reveal-on, so without it they simply show. */
+.reveal-on .paws .paw { opacity: 0; transition: opacity .3s ease; }
+.reveal-on .is-in .paws .paw { opacity: 1; }
+@media (prefers-reduced-motion: reduce) {
+  .reveal-on .paws .paw { opacity: 1; transition: none; }
+}
+
+/* side list, wide screens only */
+.rail { display: none; }
+@media (min-width: 1400px) {
+  .rail { position: fixed; left: var(--s5); top: 50%; z-index: 5; display: flex; flex-direction: column; transform: translateY(-50%); opacity: 0; pointer-events: none; transition: opacity .3s ease; }
+  .rail.is-on { opacity: 1; pointer-events: auto; }
+  .rail a { display: flex; align-items: center; gap: var(--s2); min-height: 44px; font: 600 13px/1 var(--sans); color: var(--ink); text-decoration: none; }
+  .rail svg { width: 20px; height: 22px; fill: var(--paw); transition: fill .2s ease, transform .2s ease; transform: scale(.6); }
+  .rail span { opacity: 0; transition: opacity .2s ease; }
+  .rail a:hover span, .rail a:focus-visible span, .rail a.is-here span { opacity: 1; }
+  .rail a.is-here svg { fill: var(--action); transform: scale(1); }
+  .rail.on-dark a { color: #fff; }
+  .rail.on-dark svg { fill: rgba(255, 255, 255, 0.4); }
+  .rail.on-dark a.is-here svg { fill: var(--leaf); }
+}
+
+/* each section carries its own gap */
+.days, .how, .trips, .whiskey, .enquire { padding-top: var(--s7); }
+.days, .how, .trips, .whiskey { padding-bottom: var(--s7); }
+
+/* ---------- 2. the dog's day: one pinned picture that changes as each line passes ---------- */
+.story { margin-top: var(--s6); }
+.stage { position: sticky; top: 0; z-index: 1; height: 54vh; margin: 0 calc(var(--gutter) * -1); overflow: hidden; background: var(--meadow-deep); }
+.stage img { width: 100%; height: 100%; object-fit: cover; }
+.js .stage img { position: absolute; inset: 0; opacity: 0; transition: opacity .6s ease; }
+.js .stage img.is-on { opacity: 1; }
+.stage .i-view { object-position: 78% 50%; }
+.stage .i-walk { object-position: 40% 50%; }
+.stage .i-slow { object-position: 100% 50%; }
+@media (max-width: 599px) {
+  .stage .i-slow { transform: scale(1.16); transform-origin: 100% 64%; }
+}
+.stage-count { position: absolute; left: var(--gutter); bottom: var(--s4); z-index: 2; padding: var(--s1) var(--s3); border-radius: 999px; background: rgba(8, 28, 20, .7); color: #fff; font: 700 13px/1.6 var(--sans); }
+.beats li { min-height: 46vh; display: flex; flex-direction: column; justify-content: flex-start; padding: var(--s6) 0; }
+.beats h3 { font-size: clamp(26px, 6vw, 40px); line-height: 1.05; font-weight: 800; letter-spacing: -0.03em; }
+.beats p { margin-top: var(--s3); font-size: clamp(18px, 2.2vw, 22px); max-width: 20em; }
+.js .beats li { opacity: .3; transition: opacity .4s ease; }
+.js .beats li.is-on { opacity: 1; }
+/* without the script, the four pictures simply sit in a grid above the four lines */
+@media (min-width: 600px) and (max-width: 899px) {
+  .stage { height: 60vh; }
+  .beats li { min-height: 40vh; }
+  .beats p { max-width: 30em; }
+}
+html:not(.js) .stage { position: static; height: auto; display: grid; grid-template-columns: 1fr 1fr; }
+html:not(.js) .stage-count { display: none; }
+html:not(.js) .beats li { min-height: 0; padding: var(--s5) 0; }
+@media (prefers-reduced-motion: reduce) {
+  .js .stage img, .js .beats li { transition: none; }
+}
+
+/* ---------- 3. you plan nothing ---------- */
+.handled { position: relative; background: var(--meadow); margin-top: clamp(28px, 5.5vw, 80px); padding-top: var(--s7); padding-bottom: calc(var(--s7) + clamp(28px, 5.5vw, 80px)); }
+.band-edge { position: absolute; left: 0; width: 100%; height: clamp(28px, 5.5vw, 80px); }
+.band-edge-top { bottom: calc(100% - 1px); fill: var(--meadow); }
+.band-edge-bottom { bottom: -1px; fill: var(--paper); }
+.hero-edge { height: clamp(30px, 6vw, 96px); }
+.handled-grid { display: grid; gap: var(--s6); }
+.more { margin-top: var(--s6); }
+
+/* ---------- 4. we go there before you do ---------- */
+/* the painting: a sheet of white paper, slightly crooked, on a pale green block. The dog who painted it (a cut-out
+   photograph, no scenery) sits in front of its lower corner. --tall is the whole picture's height over its width. */
+.painting { --tall: 1.36; --dog: 49%; position: relative; width: min(100% - 28px, 400px); aspect-ratio: 1 / var(--tall); margin: 0 auto var(--s6); }
+.painting::before { content: ""; position: absolute; top: 14px; left: 14px; right: -14px; aspect-ratio: 400 / 360; border-radius: var(--radius); background: var(--meadow-deep); transform: rotate(1.5deg); }
+.painting .sheet { position: relative; display: block; width: 100%; height: auto; background: #fff; border: 1px solid var(--line); border-radius: 6px; transform: rotate(-1.5deg); }
+.painter { position: absolute; right: -5%; bottom: 0; width: var(--dog); height: auto; filter: drop-shadow(0 10px 10px rgba(15, 47, 36, 0.22)); }
+/* painted paw prints from the sheet to the dog; only where the picture is tall enough to have room for them */
+.track { display: none; }
+.vetted { position: absolute; left: -10px; top: calc(100% * 0.9 / var(--tall) - 22px); display: inline-flex; align-items: center; gap: var(--s2); padding: 10px var(--s4) 10px var(--s3); border-radius: 24px; background: var(--forest); color: #fff; font: 700 16px/1 var(--display); letter-spacing: -0.01em; transform: rotate(-4deg); }
+.vetted svg { width: 18px; height: 20px; fill: #fff; }
+.checks { display: grid; gap: var(--s5); }
+.checks li { display: grid; grid-template-columns: 48px minmax(0, 1fr); gap: var(--s4); align-items: start; }
+.check-paw { position: relative; display: block; width: 48px; height: 53px; }
+.check-paw svg { width: 100%; height: 100%; fill: var(--action); }
+.check-paw b { position: absolute; left: 0; right: 0; top: 50%; text-align: center; font: 800 18px/1 var(--display); color: #fff; }
+.checks h3 { margin-top: var(--s1); font-size: clamp(20px, 2.4vw, 24px); line-height: 1.1; font-weight: 800; letter-spacing: -0.02em; }
+.checks p { margin-top: var(--s1); max-width: 30em; }
+
+/* ---------- 5. where we go ---------- */
+.trips-photo { margin-top: var(--s6); width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: cover; object-position: 50% 62%; border-radius: var(--radius-panel); }
+.trips-grid { margin-top: var(--s7); display: grid; gap: var(--s6); }
+.map { display: block; width: 100%; height: auto; max-width: 460px; margin-inline: auto; }
+.map-ground { fill: var(--meadow); }
+.map-hills { fill: var(--meadow-deep); }
+.map-sun circle { fill: #f59e0b; }
+.map-sun line { stroke: #d97706; stroke-width: 3.5; }
+.map-route { fill: none; stroke: var(--muted); stroke-width: 1.5; stroke-dasharray: 2 7; stroke-linecap: round; }
+.map-arrow { fill: none; stroke: var(--muted); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.map-route-open { fill: none; stroke: none; }
+.map .paw { fill: var(--action); }
+.map text { font: 600 18px var(--display); fill: var(--body); letter-spacing: -0.01em; }
+.map-stop circle { fill: var(--paper); stroke: var(--ink); stroke-width: 2; }
+.map-stop.is-open circle { fill: var(--action); stroke: var(--paper); stroke-width: 3; }
+.map-stop.is-open text { font-weight: 800; font-size: 24px; fill: var(--ink); }
+.map-home circle { fill: var(--ink); stroke: var(--paper); stroke-width: 3; }
+.map-home text { font-weight: 700; fill: var(--ink); }
+.map text.map-small { font: 500 15px var(--sans); fill: var(--muted); letter-spacing: 0; }
+
+.trip-list li { border-top: 1px solid var(--line); }
+.trip-list li.is-open { border: 0; background: var(--meadow); border-radius: var(--radius-panel); padding: var(--s2) var(--s5); margin-bottom: var(--s5); }
+.trip-list li.is-open + li { border-top: 0; }
+.trip-list li:last-child { border-bottom: 1px solid var(--line); }
+.trip-row { display: block; padding: var(--s5) 0; color: inherit; text-decoration: none; }
+.trip-top { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: var(--s2) var(--s4); }
+.trip-row h3 { font-size: clamp(20px, 4.6vw, 24px); line-height: 1.15; font-weight: 800; letter-spacing: -0.02em; }
+.is-open .trip-row h3 { font-size: clamp(26px, 6vw, 36px); line-height: 1.1; }
+.trip-list li:not(.is-open) .trip-row { padding: var(--s4) 0; }
+a.trip-row:hover h3 { color: var(--action); }
+.trip-line { margin-top: var(--s3); max-width: 30em; }
+.trip-meta { margin-top: var(--s2); font-size: 15px; color: var(--muted); }
+.trip-status { font: 700 15px/1.4 var(--sans); color: var(--muted); }
+.trip-status.is-open { color: #fff; background: var(--action); padding: var(--s1) var(--s3); border-radius: 999px; }
+.trip-go { margin-top: var(--s4); display: flex; align-items: center; gap: var(--s2); font-weight: 700; color: var(--action-dark); }
+.trip-go svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+a.trip-row:hover .trip-go { text-decoration: underline; text-underline-offset: 4px; }
+
+
+/* a blank the owners still have to fill; never ship with one visible */
+.todo { color: var(--todo); border-bottom: 2px dashed currentColor; font-weight: 700; }
+
+/* ---------- 7. what families say: SAMPLE quotes until the first trips, and marked as samples ---------- */
+.said { padding: var(--s7) 0; }
+.quotes { display: grid; gap: var(--s5); margin-top: var(--s6); }
+.quote { display: flex; flex-direction: column; height: 100%; margin: 0; padding: var(--s5); border-radius: var(--radius-panel); background: var(--meadow); }
+.sample-tag { align-self: flex-start; padding: var(--s1) var(--s3); border: 2px dashed var(--todo); border-radius: 999px; font: 700 13px/1.4 var(--sans); color: var(--todo); }
+.quote blockquote { margin: var(--s4) 0 0; }
+.quote blockquote p { font: 600 clamp(18px, 2vw, 20px)/1.45 var(--display); letter-spacing: -0.01em; color: var(--ink); }
+.quote figcaption { display: flex; align-items: center; gap: var(--s3); margin-top: auto; padding-top: var(--s5); }
+.quote img { flex: none; width: 56px; height: 56px; border-radius: 50%; object-fit: cover; }
+.quote .todo, .sample-tag { color: #92400e; border-color: #92400e; } /* darker on the green card, to stay readable */
+.quote-who { display: grid; justify-items: start; gap: var(--s1); font-size: 15px; line-height: 1.3; }
+
+/* ---------- 6. who we are, and Whiskey's channel ---------- */
+/* Whiskey's section sits on the dark band with hill edges, where the Coorg trip used to be */
+.whiskey { position: relative; background: var(--forest); color: var(--on-forest); margin-top: clamp(28px, 5.5vw, 80px); }
+main > .whiskey { padding-bottom: calc(var(--s7) + clamp(28px, 5.5vw, 80px)); }
+.whiskey .band-edge-top { fill: var(--forest); }
+.whiskey h2, .whiskey .follow p { color: #fff; }
+.whiskey .lede, .whiskey .whiskey-why { color: var(--on-forest); }
+.whiskey-grid { display: grid; gap: var(--s7); }
+.whiskey-why { margin-top: var(--s4); max-width: 30em; }
+.follow { margin-top: var(--s6); display: flex; align-items: center; gap: var(--s4); }
+.follow p { font: 700 19px/1.2 var(--display); letter-spacing: -0.01em; color: var(--ink); }
+.follow ul { display: flex; gap: var(--s3); }
+.follow a { display: grid; place-items: center; width: 52px; height: 52px; border-radius: 50%; background: var(--forest); color: #fff; transition: background .2s ease; }
+.follow a:hover, .follow a:focus-visible { background: var(--action); }
+.whiskey .follow a { background: var(--paper); color: var(--forest); }
+.whiskey .follow a:hover, .whiskey .follow a:focus-visible { background: var(--leaf); }
+.follow svg { width: 26px; height: 26px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.follow svg .solid { fill: currentColor; stroke: none; }
+.video { position: relative; display: block; width: min(100% - 28px, 270px); margin-inline: auto; color: var(--ink); text-decoration: none; }
+.video::before { content: ""; position: absolute; inset: 14px 14px -14px -14px; border-radius: var(--radius-panel); background: var(--meadow-deep); transform: rotate(2deg); }
+.video-frame { position: relative; display: block; overflow: hidden; border-radius: var(--radius-panel); background: var(--forest); aspect-ratio: 9 / 16; transform: rotate(2deg); transition: transform .3s ease; } /* the episode is a vertical video, so its cover is shown upright */
+.video-frame img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s ease; }
+.video:hover .video-frame { transform: rotate(0deg); }
+.video-play { position: absolute; left: var(--s4); bottom: var(--s4); display: inline-flex; align-items: center; gap: var(--s2); height: 48px; padding: 0 var(--s4) 0 var(--s3); border-radius: 24px; background: var(--paper); font: 700 15px/1 var(--display); color: var(--ink); }
+.video-play svg { width: 24px; height: 24px; fill: var(--action); }
+/* from a large phone up, the cover sits beside the words */
+@media (min-width: 600px) {
+  .whiskey-grid { grid-template-columns: minmax(0, 1fr) auto; gap: var(--s7); align-items: center; } /* the words sit level with the middle of his picture */
+  .video { width: 240px; margin: 0 var(--s4) 0 14px; }
+}
+@media (prefers-reduced-motion: reduce) { .video-frame { transition: none; } }
+
+@media (min-width: 900px) {
+  .days, .how, .trips, .whiskey, .enquire { padding-top: var(--s8); }
+  .days, .how, .trips, .whiskey { padding-bottom: var(--s8); }
+  .story { margin-top: var(--s7); display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: var(--s8); align-items: start; }
+  .stage { top: 9vh; height: 82vh; max-height: 780px; margin: 0; border-radius: var(--radius-panel); }
+  .stage-count { left: var(--s4); }
+  .beats li { min-height: 82vh; padding: 0; justify-content: center; }
+  .beats li:last-child { min-height: 91vh; }
+  /* the words run down the left; the painting and the dog fill the right side */
+  .handled-grid { grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); grid-template-areas: "head pic" "list pic"; column-gap: var(--s7); row-gap: var(--s6); align-items: start; }
+  .handled-head { grid-area: head; }
+  .handled-list { grid-area: list; }
+  .handled .painting { grid-area: pic; --tall: 1.62; --dog: 60%; width: calc(100% - 30px); margin: 0; }
+  .track { display: block; position: absolute; width: 8.5%; aspect-ratio: 40 / 44; fill: #86c6d4; transform: rotate(118deg); }
+  .track-1 { left: 9%; top: 66%; }
+  .track-2 { left: 21%; top: 74%; fill: #2f8f4a; opacity: 0.75; }
+  .track-3 { left: 17%; top: 84%; }
+  .track-4 { left: 31%; top: 90%; fill: #2f8f4a; opacity: 0.75; }
+  .trips-photo { aspect-ratio: 21 / 9; }
+  .trips-grid { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: var(--s8); align-items: start; }
+  .map { position: sticky; top: var(--s6); }
+  .whiskey-grid { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: var(--s8); align-items: center; }
+  main > .whiskey { padding-bottom: calc(var(--s8) + clamp(28px, 5.5vw, 80px)); }
+  .said { padding: var(--s8) 0; }
+  .quotes { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .video { width: 310px; justify-self: end; margin: 0 var(--s4) 0 0; }
+}
+
+/* ---------- 8. the form ---------- */
+.enquire { position: relative; background: var(--meadow); margin-top: clamp(28px, 5.5vw, 80px); }
+.enquire-grid { display: grid; gap: var(--s7); }
+#enquiry { background: #fff; border-radius: var(--radius-panel); padding: var(--s5); }
+/* what happens after the form is sent */
+.next { margin-top: var(--s5); counter-reset: next; display: grid; gap: var(--s4); max-width: 26em; }
+.next li { position: relative; padding-left: var(--s7); }
+.next li::before { counter-increment: next; content: counter(next); position: absolute; left: 0; top: 1px; width: 28px; height: 28px; border-radius: 50%; background: var(--action); color: #fff; font: 800 15px/28px var(--display); text-align: center; }
+.next b { display: block; color: var(--ink); font-family: var(--display); font-size: 19px; letter-spacing: -0.01em; }
+.field + .field { margin-top: var(--s5); }
+label { display: block; font: 700 15px/1.4 var(--sans); color: var(--ink); margin-bottom: var(--s2); }
+input, textarea {
+  width: 100%; min-height: 52px; padding: var(--s3) var(--s4);
+  font: 400 17px/1.5 var(--sans); color: var(--ink);
+  background: #fff; border: 2px solid var(--line); border-radius: var(--radius);
+}
+textarea { resize: vertical; }
+input:hover, textarea:hover { border-color: var(--muted); }
+input[aria-invalid="true"] { border-color: #b91c1c; }
+.hint { font-size: 14px; color: var(--muted); margin-top: var(--s2); }
+.hint.is-error { color: #b91c1c; font-weight: 600; }
+.hp { position: absolute; left: -9999px; }
+.btn-send { width: 100%; margin-top: var(--s6); }
+.result { margin-top: var(--s4); font-weight: 600; color: var(--ink); }
+.result:empty { display: none; }
+
+@media (min-width: 900px) {
+  .enquire-grid { grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: var(--s8); align-items: start; }
+  #enquiry { padding: var(--s7); }
+  .enquire-grid > div { position: sticky; top: var(--s7); }
+  .btn-send { width: auto; min-width: 200px; }
+}
+
+/* ---------- 9. footer ---------- */
+.foot { padding: var(--s7) 0 var(--s8); background: var(--meadow); border-top: 1px solid var(--meadow-deep); font-size: 15px; }
+.foot p + p, .foot nav { margin-top: var(--s3); }
+.foot-line b { color: var(--ink); font-family: var(--display); font-size: 18px; }
+.foot nav { display: flex; flex-wrap: wrap; gap: 0 var(--s5); }
+.foot a { display: inline-flex; align-items: center; min-height: 44px; min-width: 44px; color: var(--body); text-underline-offset: 4px; }
+.foot a:hover { color: var(--action); }
+.foot-small { color: var(--muted); }
+
+/* ---------- wider screens ---------- */
+@media (min-width: 900px) {
+  :root { --gutter: 40px; }
+  section { padding: var(--s9) 0; }
+  .hero { padding-top: var(--s7); }
+  .hero-photo { margin-top: calc(var(--s9) * -1); }
+}
+
+/* ---------- the hero from a laptop up ----------
+   Stacked under the words, the picture pushed the dog below the first screen, and on a wide monitor its height cap
+   cropped it so the dog's head fell in the fade. From 900px the picture fills the hero and the words sit over its
+   left side: the dog, on the right, shows whole on the first screen. Three fades are combined: the sky at the top,
+   the left side behind the words, which is thinned to a soft wash and never wiped to paper, and the grass coming back
+   in below them (--words is where the words end). */
+@media (min-width: 900px) {
+  /* --drop moves the picture down: its top is faded sky, so the gap above it never shows */
+  .hero { position: relative; padding: 0; --drop: clamp(32px, 3.5vw, 56px); min-height: calc(47vw + var(--drop) + clamp(30px, 6vw, 96px)); /* + the hills, so they sit on extra grass, not on the dog */ --words: 500px; }
+  .hero-text { padding-top: var(--s7); padding-bottom: var(--s7); }
+  .hero h1 { font-size: clamp(52px, 5.8vw, 84px); max-width: 7.6em; }
+  .hero-sub { max-width: min(25em, 41vw); color: var(--ink); font-weight: 500; } /* the words sit on the picture here */
+  .hero-photo { position: absolute; inset: var(--drop) 0 0; margin: 0; overflow: hidden; }
+  .hero + .days { padding-top: calc(var(--s8) + 24px); }
+  .hero-photo :is(img, video) {
+    width: 118%; max-width: none; height: 100%;
+    object-position: 0 79%;
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 17%), linear-gradient(to right, rgba(0,0,0,.30) 0, rgba(0,0,0,.30) 24%, rgba(0,0,0,.52) 52%, #000 70%), linear-gradient(to bottom, transparent var(--words), #000 calc(var(--words) + 170px));
+            mask-image: linear-gradient(to bottom, transparent 0, #000 17%), linear-gradient(to right, rgba(0,0,0,.30) 0, rgba(0,0,0,.30) 24%, rgba(0,0,0,.52) 52%, #000 70%), linear-gradient(to bottom, transparent var(--words), #000 calc(var(--words) + 170px));
+    -webkit-mask-composite: source-in, source-over;
+            mask-composite: intersect, add;
+  }
+  /* the ridge clip has the pair on the right: show its whole width and keep them clear of the hills edge */
+  .hero-photo video { width: 100%; object-position: 70% 100%; }
+}
+
+/* ---------- sections rise into view (site.js adds .rise; reduced motion never gets it) ---------- */
+.rise { opacity: 0; transform: translateY(28px); transition: opacity .7s ease, transform .8s cubic-bezier(.2, .7, .2, 1); }
+.rise.risen { opacity: 1; transform: none; }
+
+/* =========================================================================
+   THE TRIP PAGE (coorg.html). Borrows the home page's vocabulary: the hills edge,
+   the green band with numbered paws, the dark band, the buttons.
+   ========================================================================= */
+.crumbs { font-size: 15px; color: var(--muted); margin-bottom: var(--s5); }
+.crumbs a { color: var(--body); text-underline-offset: 4px; }
+
+.trip-hero { position: relative; padding: var(--s6) 0 0; }
+.trip-hero h1 { font-size: clamp(40px, 10vw, 76px); line-height: 1; font-weight: 800; letter-spacing: -0.03em; max-width: 9em; }
+.trip-hero .hero-sub { font-size: clamp(18px, 2.3vw, 22px); line-height: 1.5; max-width: 30em; margin: var(--s5) 0 var(--s6); color: var(--body); }
+.trip-hero .wrap { position: relative; z-index: 1; }
+.trip-facts { display: grid; gap: var(--s3); margin-bottom: var(--s6); }
+.trip-facts li { display: flex; flex-direction: column; padding-left: var(--s4); border-left: 3px solid var(--action); }
+.trip-facts b { font: 700 19px/1.25 var(--display); color: var(--ink); }
+.trip-facts span { font-size: 15px; color: var(--muted); }
+.trip-hero-photo { margin: var(--s7) 0 0; }
+.trip-hero-photo img { width: 100%; height: clamp(300px, 60vw, 560px); object-fit: cover; object-position: 72% 88%; }
+
+.plan .lede { margin-bottom: var(--s7); }
+.day-list { display: grid; gap: var(--s7); }
+.day { display: grid; gap: var(--s5); }
+.day img { width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: cover; border-radius: var(--radius-panel); }
+.day-num { font: 700 14px/1 var(--display); letter-spacing: .08em; text-transform: uppercase; color: var(--action); }
+.day h3 { margin-top: var(--s2); font-size: clamp(26px, 3.6vw, 36px); line-height: 1.1; font-weight: 800; }
+.day-text p:last-child { margin-top: var(--s3); max-width: 30em; }
+.plan-note { margin-top: var(--s7); font: 700 clamp(20px, 2.4vw, 24px)/1.3 var(--display); color: var(--ink); }
+
+.trip-handled h2 { margin-bottom: var(--s6); }
+.trip-checks { gap: var(--s6); }
+
+.stay-list { display: grid; gap: var(--s5); margin-top: var(--s6); }
+.stay-list li { padding: var(--s5) var(--s5) var(--s6); border-radius: var(--radius-panel); background: var(--meadow); }
+.stay-list h3 { font-size: clamp(22px, 2.6vw, 26px); line-height: 1.15; font-weight: 800; }
+.stay-list p { margin-top: var(--s2); }
+
+.know { padding-top: 0; }
+.know-grid { display: grid; gap: var(--s7); }
+.ticks { margin-top: var(--s5); display: grid; gap: var(--s3); }
+.ticks li { position: relative; padding-left: 32px; }
+.ticks li::before { content: ""; position: absolute; left: 2px; top: .45em; width: 16px; height: 9px; border-left: 3px solid var(--action); border-bottom: 3px solid var(--action); transform: rotate(-45deg); }
+.know-list { margin: var(--s5) 0 0; display: grid; gap: var(--s4); }
+.know-list div { padding-bottom: var(--s4); border-bottom: 1px solid var(--line); }
+.know-list dt { font: 700 17px/1.3 var(--display); color: var(--ink); }
+.know-list dd { margin: var(--s1) 0 0; }
+
+.trip-cta { position: relative; background: var(--forest); color: var(--on-forest-muted); margin-top: clamp(28px, 5.5vw, 80px); text-align: center; }
+.trip-cta .band-edge-top { fill: var(--forest); }
+.trip-cta h2 { color: var(--on-forest); margin: 0 auto; }
+.trip-cta .lede { margin: var(--s4) auto var(--s6); color: var(--on-forest-muted); }
+.trip-status-line { margin-top: var(--s5); font-size: 15px; color: var(--leaf); }
+.trip-page .foot { margin-top: 0; }
+
+@media (min-width: 700px) {
+  .trip-facts { grid-template-columns: repeat(3, auto); justify-content: start; gap: var(--s6); }
+  .stay-list { grid-template-columns: 1fr 1fr; }
+  .day { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: center; gap: var(--s7); }
+  .day:nth-child(even) img { order: 2; }
+}
+@media (min-width: 900px) {
+  .trip-hero { padding-top: var(--s7); }
+  .trip-hero-photo { margin-top: calc(var(--s8) * -1); }
+  .trip-hero-photo img { -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 28%); mask-image: linear-gradient(to bottom, transparent 0, #000 28%); height: clamp(420px, 46vw, 640px); }
+  .know-grid { grid-template-columns: 1fr 1fr; gap: var(--s8); }
+  .trip-checks { grid-template-columns: 1fr 1fr; gap: var(--s6) var(--s8); }
+}
