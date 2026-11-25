@@ -98,10 +98,13 @@ body { overflow-x: clip; }
 @media (min-width: 900px) { .handled .painting.painting-photo { --tall: 1.327; } }
 
 /* ---- "Plan my trip" form: dates and destination ---- */
-#enquiry fieldset.dates { border: 0; padding: 0; margin: 0; min-width: 0; }
+#enquiry fieldset.dates { border: 0; padding: 0; margin: var(--s5) 0 0; min-width: 0; }
 #enquiry fieldset.dates + .field, .field + fieldset.dates { margin-top: var(--s5); }
 #enquiry legend { display: block; font: 700 15px/1.4 var(--sans); color: var(--ink); margin-bottom: var(--s2); padding: 0; }
-.date-pair { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s3); }
+.date-pair { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--s3); }
+.date-pair > div { min-width: 0; }
+.enquire-grid > * { min-width: 0; }
+#enquiry input[type="date"] { display: block; width: 100%; min-width: 0; max-width: 100%; -webkit-appearance: none; appearance: none; }
 .date-pair label { font-weight: 600; font-size: 13px; color: var(--muted); margin-bottom: 4px; }
 .date-pair input { min-width: 0; }
 #enquiry select {
