@@ -2,49 +2,88 @@
 // The page reads as a plain document without this file. It sends the enquiry form,
 // changes the pinned picture in the dog's day, and walks the map route in paw prints.
 
-// Where enquiries are posted. Paste the form service's endpoint here
-// (for example a Formspree or FormSubmit URL that emails hello@trailsunseen.com).
-// While it is empty, the form opens the visitor's email app with the details filled in.
-var FORM_ENDPOINT = "";
+// ---- Where a "Plan my trip" lead goes ----
+// 1. LEADS_ENDPOINT: the Google Apps Script web app (".../exec" URL) that adds a row to the
+//    "Trails Unseen leads" Google Sheet. While it is empty, nothing is logged to the sheet.
+// 2. WHATSAPP_NUMBER: Trails Unseen's WhatsApp Business number, country code first, digits only
+//    (for example "919876543210"). After the lead is saved, the visitor's WhatsApp opens with the
+//    details typed out to this number, and they press send.
+// While both are empty, the form falls back to the visitor's email app.
+var LEADS_ENDPOINT = "";
+var WHATSAPP_NUMBER = "";
 var CONTACT_EMAIL = "hello@trailsunseen.com";
 
-// ---- The enquiry form ----
+// ---- The "Plan my trip" form ----
 (function () {
   var form = document.getElementById('enquiry');
   if (!form) return;
   var out = document.getElementById('result');
   var nameEl = document.getElementById('f-name');
   var phoneEl = document.getElementById('f-phone');
+  var fromEl = document.getElementById('f-from');
+  var toEl = document.getElementById('f-to');
   var phoneHint = document.getElementById('f-phone-hint');
   var phoneHintText = phoneHint.textContent;
+  var datesHint = document.getElementById('f-dates-hint');
+  var datesHintText = datesHint ? datesHint.textContent : '';
 
-  function val(id) { return (document.getElementById(id).value || '').trim(); }
+  // No dates in the past; "To" can't be before "From".
+  var today = new Date(); today.setMinutes(today.getMinutes() - today.getTimezoneOffset());
+  var iso = today.toISOString().slice(0, 10);
+  if (fromEl) fromEl.min = iso;
+  if (toEl) toEl.min = iso;
+  if (fromEl && toEl) fromEl.addEventListener('change', function () {
+    toEl.min = fromEl.value || iso;
+    if (toEl.value && toEl.value < fromEl.value) toEl.value = '';
+  });
 
-  function markInvalid(el, bad) {
-    if (bad) el.setAttribute('aria-invalid', 'true'); else el.removeAttribute('aria-invalid');
+  function val(id) { var el = document.getElementById(id); return el ? (el.value || '').trim() : ''; }
+  function markInvalid(el, bad) { if (bad) el.setAttribute('aria-invalid', 'true'); else el.removeAttribute('aria-invalid'); }
+  function nice(d) {
+    if (!d) return '';
+    var p = d.split('-');
+    var m = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][+p[1] - 1];
+    return (+p[2]) + ' ' + m + ' ' + p[0];
   }
 
   function check() {
     var nameBad = !val('f-name');
-    var digits = val('f-phone').replace(/\D/g, '');
-    var phoneBad = digits.length < 10;
-    markInvalid(nameEl, nameBad);
-    markInvalid(phoneEl, phoneBad);
+    var phoneBad = val('f-phone').replace(/\D/g, '').length < 10;
+    var fromBad = !val('f-from');
+    var toBad = !val('f-to') || (val('f-from') && val('f-to') < val('f-from'));
+    markInvalid(nameEl, nameBad); markInvalid(phoneEl, phoneBad);
+    markInvalid(fromEl, fromBad); markInvalid(toEl, toBad);
     phoneHint.textContent = phoneBad ? 'Please add a phone number so we can call you.' : phoneHintText;
     phoneHint.classList.toggle('is-error', phoneBad);
+    if (datesHint) {
+      datesHint.textContent = (fromBad || toBad) ? 'Please pick your travel dates (rough dates are fine).' : datesHintText;
+      datesHint.classList.toggle('is-error', fromBad || toBad);
+    }
     if (nameBad) { out.textContent = 'Please add your name.'; nameEl.focus(); return false; }
-    if (phoneBad) { out.textContent = ''; phoneEl.focus(); return false; }
+    out.textContent = '';
+    if (phoneBad) { phoneEl.focus(); return false; }
+    if (fromBad) { fromEl.focus(); return false; }
+    if (toBad) { toEl.focus(); return false; }
     return true;
   }
 
-  function summary() {
-    return [
-      'Name: ' + val('f-name'),
-      'Phone: ' + val('f-phone'),
-      val('f-dog') ? 'Dog: ' + val('f-dog') : '',
-      val('f-when') ? 'When: ' + val('f-when') : '',
-      val('f-note') ? 'Notes: ' + val('f-note') : ''
-    ].filter(Boolean).join('\n');
+  function lead() {
+    var q = new URLSearchParams(location.search);
+    return {
+      name: val('f-name'), phone: val('f-phone'),
+      destination: val('f-dest') || 'Coorg',
+      from: val('f-from'), to: val('f-to'),
+      page: location.href.split('#')[0],
+      source: q.get('utm_source') || document.referrer || 'direct'
+    };
+  }
+
+  function message(l) {
+    return 'Hi Trails Unseen! I\'d like to plan a trip.\n' +
+      'Name: ' + l.name + '\n' +
+      'Phone: ' + l.phone + '\n' +
+      'Destination: ' + l.destination + '\n' +
+      'Dates: ' + nice(l.from) + ' to ' + nice(l.to);
   }
 
   form.addEventListener('submit', function (e) {
@@ -52,32 +91,30 @@ var CONTACT_EMAIL = "hello@trailsunseen.com";
     if (!check()) return;
     if (val('f-site')) return; // a bot filled the hidden field
 
-    var name = val('f-name');
-
-    if (!FORM_ENDPOINT) {
-      // No form service yet: open the visitor's email app with everything filled in.
-      location.href = 'mailto:' + CONTACT_EMAIL +
-        '?subject=' + encodeURIComponent('Trip enquiry from ' + name) +
-        '&body=' + encodeURIComponent(summary());
-      out.textContent = 'Your email app should open with your details. Press send there and we\'ll call you within a day.';
-      return;
-    }
-
+    var l = lead();
     var button = form.querySelector('button[type="submit"]');
     button.disabled = true;
-    out.textContent = 'Sending…';
+    out.textContent = 'Saving your details…';
 
-    fetch(FORM_ENDPOINT, {
-      method: 'POST',
-      headers: { 'Accept': 'application/json' },
-      body: new FormData(form)
-    }).then(function (res) {
-      if (!res.ok) throw new Error('send failed');
-      form.reset();
-      out.textContent = 'Thanks, ' + name + '. We\'ll call you within a day.';
-    }).catch(function () {
-      out.textContent = 'That didn\'t send. Email ' + CONTACT_EMAIL + ' and we\'ll call you.';
-    }).then(function () {
+    // Log the lead to the Google Sheet. Apps Script doesn't send CORS headers, so this is a
+    // fire-and-forget "no-cors" post; keepalive lets it finish even if WhatsApp opens next.
+    var saved = LEADS_ENDPOINT
+      ? fetch(LEADS_ENDPOINT, { method: 'POST', mode: 'no-cors', keepalive: true, body: new URLSearchParams(l) })
+          .catch(function () { return null; })
+      : Promise.resolve(null);
+
+    saved.then(function () {
+      if (WHATSAPP_NUMBER) {
+        out.textContent = 'Thanks, ' + l.name + '. WhatsApp is opening with your details. Press send and we\'ll call you within a day.';
+        location.href = 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent(message(l));
+      } else if (LEADS_ENDPOINT) {
+        out.textContent = 'Thanks, ' + l.name + '. We\'ve got your details and will call you within a day.';
+        form.reset();
+      } else {
+        location.href = 'mailto:' + CONTACT_EMAIL + '?subject=' + encodeURIComponent('Trip plan request from ' + l.name) +
+          '&body=' + encodeURIComponent(message(l));
+        out.textContent = 'Your email app should open with your details. Press send and we\'ll call you within a day.';
+      }
       button.disabled = false;
     });
   });
