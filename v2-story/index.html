@@ -144,61 +144,9 @@
     </div>
     <!-- The painting, and the painter: a drawn golden retriever with the brush in his mouth. It is a cartoon, never a
          photo, and it shows what is checked (a stay and its fence, the water, a vet, the road in) at no particular place. -->
-    <div class="painting">
-      <svg class="sheet" viewBox="0 0 400 360" aria-hidden="true">
-        <defs>
-          <filter id="brush" x="-6%" y="-6%" width="112%" height="112%">
-            <feTurbulence type="fractalNoise" baseFrequency="0.022" numOctaves="2" seed="11" result="wobble"/>
-            <feDisplacementMap in="SourceGraphic" in2="wobble" scale="16" xChannelSelector="R" yChannelSelector="G" result="wet"/>
-            <feTurbulence type="fractalNoise" baseFrequency="0.02 0.4" numOctaves="1" seed="4" result="bristle"/>
-            <feColorMatrix in="bristle" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -9 7.6" result="dry"/>
-            <feComposite in="wet" in2="dry" operator="in"/>
-          </filter>
-        </defs>
-        <g filter="url(#brush)" fill="none" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M-10 270 C 60 246, 140 276, 210 256 C 280 238, 340 268, 410 250" stroke="#cfe5bd" stroke-width="64"/>
-          <path d="M-10 330 C 80 316, 200 342, 410 320" stroke="#cfe5bd" stroke-width="76"/>
-          <path d="M-10 196 C 50 150, 110 172, 170 160 C 230 148, 300 118, 410 158" stroke="#9cc98f" stroke-width="13"/>
-          <circle cx="78" cy="66" r="25" fill="#f6a81c"/><path d="M78 22 L78 8" stroke="#f6a81c" stroke-width="8"/><path d="M110 36 L121 25" stroke="#f6a81c" stroke-width="8"/><path d="M124 66 L139 66" stroke="#f6a81c" stroke-width="8"/><path d="M110 96 L120 107" stroke="#f6a81c" stroke-width="8"/><path d="M46 36 L36 26" stroke="#f6a81c" stroke-width="8"/><path d="M32 68 L18 70" stroke="#f6a81c" stroke-width="8"/><path d="M48 98 L39 109" stroke="#f6a81c" stroke-width="8"/>
-          <path d="M320 150 C 282 198, 346 234, 302 282 C 282 306, 302 338, 288 372" stroke="#86c6d4" stroke-width="30"/>
-          <path d="M300 190 q8 -7 16 0 M308 250 q8 -7 16 0 M286 318 q8 -7 16 0" stroke="#dff1f4" stroke-width="5"/>
-          <path d="M72 262 L75 202 L155 198 L159 260 Z" fill="#fff6dc" stroke="#8a5a2b" stroke-width="9"/>
-          <path d="M56 206 L113 150 L176 202 Z" fill="#1c5a38" stroke="#1c5a38" stroke-width="10"/>
-          <path d="M114 258 L115 232" stroke="#8a5a2b" stroke-width="15"/>
-          <path d="M92 222 l1 6 M138 221 l1 6" stroke="#f6a81c" stroke-width="11"/>
-          <path d="M236 256 L238 216" stroke="#8a5a2b" stroke-width="9"/>
-          <circle cx="238" cy="196" r="24" fill="#2f8f4a"/><circle cx="256" cy="210" r="14" fill="#2f8f4a"/>
-          <path d="M40 288 L42 322" stroke="#8a5a2b" stroke-width="7"/><path d="M63 292 L62 320" stroke="#8a5a2b" stroke-width="7"/><path d="M86 286 L88 324" stroke="#8a5a2b" stroke-width="7"/><path d="M109 291 L108 321" stroke="#8a5a2b" stroke-width="7"/><path d="M133 287 L134 323" stroke="#8a5a2b" stroke-width="7"/><path d="M156 292 L157 320" stroke="#8a5a2b" stroke-width="7"/><path d="M180 288 L179 324" stroke="#8a5a2b" stroke-width="7"/><path d="M203 291 L204 321" stroke="#8a5a2b" stroke-width="7"/><path d="M30 305 C 80 298, 150 311, 214 302" stroke="#8a5a2b" stroke-width="6" fill="none"/>
-          <path d="M8 352 l16 -6" stroke="#cfae84" stroke-width="9"/><path d="M44 340 l18 -3" stroke="#cfae84" stroke-width="9"/><path d="M84 335 l18 2" stroke="#cfae84" stroke-width="9"/><path d="M124 340 l18 4" stroke="#cfae84" stroke-width="9"/><path d="M164 349 l16 5" stroke="#cfae84" stroke-width="9"/>
-          <path d="M360 176 V218 M339 197 H381" stroke="#2f8f4a" stroke-width="13"/>
-          <g fill="#2f8f4a" stroke="none">
-            <use href="#paw" x="286" y="26" width="44" height="48" transform="rotate(18 308 50)"/>
-            <use href="#paw" x="338" y="62" width="44" height="48" transform="rotate(26 360 86)"/>
-            <circle cx="262" cy="64" r="4"/><circle cx="274" cy="92" r="2.5"/>
-          </g>
-          <!-- drips, splatters and a smear: the paint was wet and the painter was not careful -->
-          <path d="M96 84 v30 M60 80 v15" stroke="#f6a81c" stroke-width="5"/><circle cx="96" cy="117" r="4.5" fill="#f6a81c"/>
-          <path d="M150 204 v24 M84 206 v13" stroke="#1c5a38" stroke-width="5"/><circle cx="150" cy="230" r="4" fill="#1c5a38"/>
-          <path d="M372 216 v22" stroke="#2f8f4a" stroke-width="5"/><circle cx="372" cy="240" r="4" fill="#2f8f4a"/>
-          <path d="M236 338 C 250 331, 268 335, 288 346" stroke="#86c6d4" stroke-width="14"/>
-          <path d="M196 96 c14 -9 30 -6 40 3" stroke="#f6a81c" stroke-width="12" opacity=".8"/>
-          <g stroke="none">
-            <circle cx="176" cy="58" r="5" fill="#f6a81c"/><circle cx="190" cy="44" r="2.5" fill="#f6a81c"/><circle cx="166" cy="40" r="2" fill="#f6a81c"/>
-            <circle cx="250" cy="128" r="4" fill="#2f8f4a"/><circle cx="238" cy="112" r="2" fill="#2f8f4a"/><circle cx="388" cy="132" r="3" fill="#2f8f4a"/>
-            <circle cx="344" cy="268" r="4" fill="#86c6d4"/><circle cx="356" cy="284" r="2" fill="#86c6d4"/><circle cx="268" cy="330" r="3" fill="#86c6d4"/>
-            <circle cx="40" cy="262" r="3.5" fill="#8a5a2b"/><circle cx="222" cy="330" r="2.5" fill="#8a5a2b"/>
-          </g>
-          <g fill="#8a5a2b" stroke="none" opacity=".85">
-            <use href="#paw" x="216" y="268" width="30" height="33" transform="rotate(-24 231 284)"/>
-          </g>
-          <circle cx="150" cy="116" r="3.5" fill="#f6a81c"/><circle cx="208" cy="300" r="3" fill="#86c6d4"/><circle cx="24" cy="236" r="3" fill="#8a5a2b"/>
-        </g>
-      </svg>
-      <svg class="track track-1" aria-hidden="true"><use href="#paw"/></svg>
-      <svg class="track track-2" aria-hidden="true"><use href="#paw"/></svg>
-      <svg class="track track-3" aria-hidden="true"><use href="#paw"/></svg>
-      <svg class="track track-4" aria-hidden="true"><use href="#paw"/></svg>
-      <img class="painter" src="../v2/img/handled-painter-dog.webp" width="524" height="990" loading="lazy" alt="A golden retriever with a paintbrush in its mouth and paint on its paws, sitting in front of a picture painted in thick, wobbly strokes: a sun, a house with a fence, a tree, a stream and paw prints.">
+    <!-- One photograph: the painter and the painting together (replaces the cut-out on a drawn sheet). -->
+    <div class="painting painting-photo">
+      <img class="painting-img" src="img/painting-dog.jpg" width="1100" height="1460" loading="lazy" alt="A happy golden retriever sitting on a garden lawn with a paintbrush in its mouth and blue and yellow paint on its legs, beside an easel holding its own painting of a sun, green hills, a cottage and paw prints, with misty hills behind.">
       <p class="vetted"><svg aria-hidden="true"><use href="#paw"/></svg>Paw-approved</p>
     </div>
     <div class="handled-list">
