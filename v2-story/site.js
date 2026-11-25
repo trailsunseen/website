@@ -9,7 +9,7 @@
 //    (for example "919876543210"). After the lead is saved, the visitor's WhatsApp opens with the
 //    details typed out to this number, and they press send.
 // While both are empty, the form falls back to the visitor's email app.
-var LEADS_ENDPOINT = "";
+var LEADS_ENDPOINT = "https://script.google.com/macros/s/AKfycbzNDz8xx0v7rTBOU6EjKjEQNqTYjQA-HMYlCuKhFbJ0Cerv8I8id27_vIAzMQFdenGE/exec";
 var WHATSAPP_NUMBER = "";
 var CONTACT_EMAIL = "hello@trailsunseen.com";
 
