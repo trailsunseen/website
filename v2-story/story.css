@@ -4,7 +4,7 @@
 .story.story-full {
   position: relative;
   display: block;
-  height: calc(var(--n, 4) * 100svh);
+  height: calc((var(--n, 4) + 0.6) * 100svh);
   width: 100vw;
   margin: var(--s6) 0 0 calc(50% - 50vw);
 }

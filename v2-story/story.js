@@ -20,9 +20,11 @@
     function update() {
       ticking = false;
       var r = story.getBoundingClientRect();
-      var screen = window.innerHeight;
-      // how many screens we have scrolled into the story (0 .. n)
-      var pos = Math.max(0, Math.min(n - 0.001, -r.top / screen));
+      // The stage holds for (story height - one screen) of scrolling. Share that distance equally
+      // between the moments, keeping a short pause after the last one before the page moves on.
+      var hold = Math.max(1, r.height - window.innerHeight);
+      var playable = hold * n / (n + 0.6);
+      var pos = Math.max(0, Math.min(n - 0.001, (-r.top / playable) * n));
       var i = Math.floor(pos), frac = pos - i;
       if (r.top > 0) { i = 0; frac = 0; }
       show(i);
