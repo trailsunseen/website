@@ -27,15 +27,31 @@ var CONTACT_EMAIL = "hello@trailsunseen.com";
   var datesHint = document.getElementById('f-dates-hint');
   var datesHintText = datesHint ? datesHint.textContent : '';
 
-  // No dates in the past; "To" can't be before "From".
+  // Trips start in January 2027: no "From" date before that (or before today, later on).
+  // Picking "From" moves straight on to "To", whose calendar starts at that date.
+  var FIRST_TRIP = '2027-01-01';
   var today = new Date(); today.setMinutes(today.getMinutes() - today.getTimezoneOffset());
   var iso = today.toISOString().slice(0, 10);
-  if (fromEl) fromEl.min = iso;
-  if (toEl) toEl.min = iso;
-  if (fromEl && toEl) fromEl.addEventListener('change', function () {
-    toEl.min = fromEl.value || iso;
-    if (toEl.value && toEl.value < fromEl.value) toEl.value = '';
-  });
+  var earliest = iso > FIRST_TRIP ? iso : FIRST_TRIP;
+  if (fromEl) fromEl.min = earliest;
+  if (toEl) toEl.min = earliest;
+  function openPicker(el) {
+    el.focus();
+    try { if (el.showPicker) el.showPicker(); } catch (err) { /* needs a tap in some browsers; focus is enough */ }
+  }
+  if (fromEl && toEl) {
+    fromEl.addEventListener('change', function () {
+      if (!fromEl.value) return;
+      if (fromEl.value < earliest) fromEl.value = earliest;
+      toEl.min = fromEl.value;
+      if (toEl.value && toEl.value < fromEl.value) toEl.value = '';
+      if (!toEl.value) setTimeout(function () { openPicker(toEl); }, 60);
+    });
+    // Tapping "To" first: start with "From".
+    toEl.addEventListener('click', function (e) {
+      if (!fromEl.value) { e.preventDefault(); openPicker(fromEl); }
+    });
+  }
 
   function val(id) { var el = document.getElementById(id); return el ? (el.value || '').trim() : ''; }
   function markInvalid(el, bad) { if (bad) el.setAttribute('aria-invalid', 'true'); else el.removeAttribute('aria-invalid'); }

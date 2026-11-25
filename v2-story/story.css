@@ -116,3 +116,10 @@ body { overflow-x: clip; }
   background-repeat: no-repeat; background-position: right 16px center;
 }
 #enquiry select:hover { border-color: var(--muted); }
+
+/* From and To read as one joined range */
+.date-pair { gap: 0; }
+.date-pair > div:first-child input { border-top-right-radius: 0; border-bottom-right-radius: 0; }
+.date-pair > div:last-child input { border-top-left-radius: 0; border-bottom-left-radius: 0; margin-left: -2px; width: calc(100% + 2px); }
+.date-pair input:focus { position: relative; z-index: 1; }
+.date-pair > div:last-child label { padding-left: 10px; }
