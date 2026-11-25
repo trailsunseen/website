@@ -123,3 +123,8 @@ body { overflow-x: clip; }
 .date-pair > div:last-child input { border-top-left-radius: 0; border-bottom-left-radius: 0; margin-left: -2px; width: calc(100% + 2px); }
 .date-pair input:focus { position: relative; z-index: 1; }
 .date-pair > div:last-child label { padding-left: 10px; }
+
+/* ---- Hero still (replaced the looping video, 2026-11-25): dog centre, family right ---- */
+.hero-photo img.hero-img { object-position: 62% 70%; }
+@media (max-width: 599px) { .hero-photo img.hero-img { object-position: 58% 100%; } }
+@media (min-width: 900px) { .hero-photo img.hero-img { width: 100%; object-position: 50% 75%; } }
